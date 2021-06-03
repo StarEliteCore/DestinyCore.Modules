@@ -19,7 +19,7 @@ namespace DestinyCore.EntityFrameworkCore
         public override void ConfigureServices(ConfigureServicesContext context)
         {
             this.AddDbDriven(context.Services);
-            AddDbContextWithAddUnitOfWork(context.Services);
+            AddDbContextWithUnitOfWork(context.Services);
             AddRepository(context.Services);
         }
 
@@ -55,11 +55,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        protected virtual IServiceCollection AddDbContextWithAddUnitOfWork(IServiceCollection services)
-        {
-
-            return services;
-        }
+        protected abstract IServiceCollection AddDbContextWithUnitOfWork(IServiceCollection services);
 
      
 
