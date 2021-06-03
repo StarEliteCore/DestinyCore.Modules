@@ -14,5 +14,7 @@ namespace DestinyCore.Modules
         IServiceProvider ServiceProvider { get; }
 
         IReadOnlyList<IAppModule> Modules { get; }
+
+        List<IAppModule> Source { get;  }
     }
 }

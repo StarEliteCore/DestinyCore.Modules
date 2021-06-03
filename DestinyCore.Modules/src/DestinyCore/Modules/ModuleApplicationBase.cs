@@ -19,7 +19,7 @@ namespace DestinyCore.Modules
 
         public IServiceProvider ServiceProvider { get; set; }
         public IReadOnlyList<IAppModule> Modules { get; }
-        private List<IAppModule> _source = new List<IAppModule>();
+        public List<IAppModule> Source { get; protected set; }
 
         public ModuleApplicationBase(Type startupModuleType, IServiceCollection services)
         {
@@ -29,7 +29,7 @@ namespace DestinyCore.Modules
             services.TryAddSingleton<ITypeFinder, TypeFinder>();
             services.AddSingleton<IModuleApplication>(this);
             services.TryAddObjectAccessor<IServiceProvider>();
-            _source = this.GetAllModule(services);
+            Source = this.GetAllModule(services);
 
             Modules = LoadModules();
         }
@@ -38,7 +38,7 @@ namespace DestinyCore.Modules
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
-        private List<IAppModule> GetAllModule(IServiceCollection services)
+        protected virtual List<IAppModule> GetAllModule(IServiceCollection services)
         {
             var typeFinder = services.GetOrAddSingletonService<ITypeFinder, TypeFinder>();
             var typs = typeFinder.Find(o => AppModule.IsAppModule(o));
@@ -56,23 +56,22 @@ namespace DestinyCore.Modules
         /// 获取需要加载的模块
         /// </summary>
         /// <returns></returns>
-        private IReadOnlyList<IAppModule> LoadModules()
+        protected virtual IReadOnlyList<IAppModule> LoadModules()
         {
             List<IAppModule> modules = new List<IAppModule>();
 
-            var module = _source.FirstOrDefault(o => o.GetType() == StartupModuleType);
+            var module = Source.FirstOrDefault(o => o.GetType() == StartupModuleType);
             if (module == null)
             {
                 throw new AppException($"类型为“{StartupModuleType.FullName}”的模块实例无法找到");
             }
 
-
-            modules.Add(module);
+            modules.AddIfNotContains(module);
 
             var dependeds = module.GetDependedTypes();
             foreach (var dependType in dependeds.Where(o => AppModule.IsAppModule(o)))
             {
-                var dependModule = _source.ToList().Find(m => m.GetType() == dependType);
+                var dependModule = Source.ToList().Find(m => m.GetType() == dependType);
                 if (dependModule == null)
                 {
                     throw new AppException($"加载模块{module.GetType().FullName}时无法找到依赖模块{dependType.FullName}");
