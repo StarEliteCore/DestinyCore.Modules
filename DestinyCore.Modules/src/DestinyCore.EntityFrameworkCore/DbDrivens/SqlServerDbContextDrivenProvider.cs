@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DestinyCore.EntityFrameworkCore.DbDrivens
 {
-    [DatabaseType(DatabaseType.SqlServer), Dependency(ServiceLifetime.Singleton, AddSelf = true)]
+    [DatabaseType(DataBaseType.SqlServer)]
     /// <summary>
     /// SqlServer驱动提供者
     /// </summary>

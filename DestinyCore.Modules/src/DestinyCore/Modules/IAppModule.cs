@@ -10,6 +10,12 @@ namespace DestinyCore.Modules
         void ConfigureServices(ConfigureServicesContext context);
 
 
+        /// <summary>
+        /// 配置
+        /// </summary>
+        /// <typeparam name="TOptions"></typeparam>
+        /// <param name="configureOptions">配置选项</param>
+        void Configure<TOptions>(Action<TOptions> configureOptions) where TOptions : class;
 
 
 

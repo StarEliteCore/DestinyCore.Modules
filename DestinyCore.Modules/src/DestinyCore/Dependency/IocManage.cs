@@ -28,13 +28,13 @@ namespace DestinyCore.Dependency
         /// <summary>
         /// 设置应用程序服务提供者
         /// </summary>
-        internal void SetApplicationServiceProvider(IServiceProvider provider)
+        public void SetApplicationServiceProvider(IServiceProvider provider)
         {
             provider.NotNull(nameof(provider));
             _provider = provider;
         }
 
-        internal void SetServiceCollection(IServiceCollection services)
+        public void SetServiceCollection(IServiceCollection services)
         {
             services.NotNull(nameof(services));
             _services = services;

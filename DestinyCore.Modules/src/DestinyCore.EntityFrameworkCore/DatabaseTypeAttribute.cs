@@ -10,7 +10,7 @@ namespace DestinyCore.EntityFrameworkCore
     [AttributeUsage(AttributeTargets.Class)]
     public   class DatabaseTypeAttribute: Attribute
     {
-        public DatabaseTypeAttribute(DatabaseType databaseType)
+        public DatabaseTypeAttribute(DataBaseType databaseType)
         {
 
             DatabaseType = databaseType;
@@ -18,6 +18,6 @@ namespace DestinyCore.EntityFrameworkCore
 
         }
 
-        public DatabaseType DatabaseType { get; private set; }
+        public DataBaseType DatabaseType { get; private set; }
     }
 }

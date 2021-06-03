@@ -14,7 +14,7 @@ namespace DestinyCore.Options
         /// <summary>
         /// 数据类型
         /// </summary>
-        public DatabaseType DatabaseType { get;set;}
+        public DataBaseType DatabaseType { get;set;}
 
         /// <summary>
         /// 数据库链接

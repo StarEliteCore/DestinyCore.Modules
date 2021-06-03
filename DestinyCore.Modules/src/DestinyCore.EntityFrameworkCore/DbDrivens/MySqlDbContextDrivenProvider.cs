@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DestinyCore.EntityFrameworkCore.DbDrivens
 {
-    [DatabaseType(DatabaseType.MySql), Dependency(ServiceLifetime.Singleton, AddSelf = true)]
+    [DatabaseType(DataBaseType.MySql)]
 
     /// <summary>
     /// MYsql驱动提供者

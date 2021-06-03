@@ -20,12 +20,28 @@ namespace DestinyCore.Modules
         public void ConfigureServices(IServiceCollection services)
         {
             IocManage.Instance.SetServiceCollection(services);
-            var ctx = new ConfigureServicesContext(services);
-            services.AddSingleton(ctx);
+            var context= new ConfigureServicesContext(services);
+            services.AddSingleton(context);
+            foreach (var module in Modules)
+            {
+                if (module is AppModule appModule)
+                {
+                    appModule.ConfigureServicesContext = context;
+                }
+            }
+
             foreach (var cfg in Modules)
             {
                 services.AddSingleton(cfg);
-                cfg.ConfigureServices(ctx);
+                cfg.ConfigureServices(context);
+            }
+
+            foreach (var module in Modules)
+            {
+                if (module is AppModule appModule)
+                {
+                    appModule.ConfigureServicesContext = null;
+                }
             }
         }
         /// <summary>

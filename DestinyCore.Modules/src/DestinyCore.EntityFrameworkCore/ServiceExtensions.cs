@@ -10,6 +10,7 @@ using DestinyCore.Entity;
 using DestinyCore.Exceptions;
 using DestinyCore.Options;
 using DestinyCore.EntityFrameworkCore.Interceptor;
+using DestinyCore.EntityFrameworkCore.DbDrivens;
 
 namespace DestinyCore.EntityFrameworkCore
 {
@@ -23,69 +24,66 @@ namespace DestinyCore.EntityFrameworkCore
         /// <param name="optionsAction">操作委托</param>
         /// <returns>返回已添加上下文服务集合</returns>
 
-        public static IServiceCollection AddDestinyDbContext<TDbContext>(this IServiceCollection services, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction = null) where TDbContext : DbContextBase
+        public static IServiceCollection AddDestinyDbContext<TDbContext>(this IServiceCollection services, Action<DestinyContextOptions> dbOption, Action<IServiceProvider, DbContextOptionsBuilder> optionsAction = null) where TDbContext : DbContextBase
         {
-
+         
+            if (dbOption is null)
+            {
+                throw new AppException($"{nameof(dbOption)}不能为空");
+            }
             services.AddDbContext<TDbContext>((provider, builder) =>
             {
 
-                var type = typeof(TDbContext);
-                var settings = provider.GetAppSettings();
-                if (settings == null)
-                {
-                    MessageBox.Show("配置不存在!!");
-                }
-
-                DestinyContextOptions contextOptions = settings.DbContexts?.Values.FirstOrDefault(o => o.DbContextType == type);
-
-                if (contextOptions is null)
-                {
-                    MessageBox.Show($"无法找到{type.Name}数据库配置信息!!");
-                    
-                }
-                
-                var databaseType =contextOptions.DatabaseType;
-
-                //if (databaseType == Destiny.Core.Flow.Entity.DatabaseType.SqlServer)              
-                //每个类型都要判断。可以使用一个接口，每种类型实现自己的，根据数据类型得到相关驱动，使用（策略模式？工厂模式？？）
-                //配合注入完美
-                //{ 
-
-
-                //}
-                var drivenProviderType = services.GetImplementationTypes<IDbContextDrivenProvider>()
-                ?.FirstOrDefault(o=>o.GetAttribute<DatabaseTypeAttribute>()?.DatabaseType == databaseType);
-
-                if (drivenProviderType == null)
-                {
-                    MessageBox.Show($"没有找到{databaseType}类型的驱动实例");
-
-                }
-
-                var drivenProvider = (IDbContextDrivenProvider)provider.GetService(drivenProviderType);
-                if (drivenProvider == null)
-                {
-                    MessageBox.Show($"没有找到{databaseType}类型的驱动");
-                    
-                }
-                DestinyContextOptionsBuilder optionsBuilder1 = new DestinyContextOptionsBuilder();
-                optionsBuilder1.MigrationsAssemblyName = contextOptions.MigrationsAssemblyName;
-                var connectionString = contextOptions.ConnectionString;
-               
-                if (contextOptions.ConnectionString.IsFile(".txt")) //txt文件
-                {
-                    
-                    connectionString = provider.GetFileText(contextOptions.ConnectionString, $"未找到存放{databaseType.ToDescription()}数据库链接的文件");
-                }
-
-                builder = drivenProvider.Builder(builder, connectionString, optionsBuilder1);
+                DestinyContextOptions contextOptions = new DestinyContextOptions();
+                dbOption?.Invoke(contextOptions);
+                builder = provider.AddDbContextOptionsBuilder<TDbContext>(contextOptions,builder);
                 optionsAction?.Invoke(provider,builder);
-                builder.AddInterceptors(new AuditInterceptor(provider));
             });
             return services;
 
         }
 
+        public static DbContextOptionsBuilder AddDbContextOptionsBuilder<TDbContext>(this IServiceProvider provider, DestinyContextOptions dbOption, DbContextOptionsBuilder builder)
+        {
 
+
+
+
+            if (dbOption.ConnectionString.IsNullOrEmpty())
+            {
+                MessageBox.Show("链接不能为空或null");
+            }
+
+            if (dbOption.MigrationsAssemblyName.IsNullOrEmpty())
+            {
+                MessageBox.Show("迁移程序集名不能为空或null");
+            }
+
+
+            var databaseType = dbOption.DatabaseType;
+
+
+            var drivenProvider = provider.GetServices<IDbContextDrivenProvider>()?.FirstOrDefault(o => o.GetType().GetAttribute<DatabaseTypeAttribute>()?.DatabaseType == databaseType);
+
+
+        
+            if (drivenProvider == null)
+            {
+                MessageBox.Show($"没有找到{databaseType}类型的驱动");
+
+            }
+            DestinyContextOptionsBuilder optionsBuilder1 = new DestinyContextOptionsBuilder();
+            optionsBuilder1.MigrationsAssemblyName = dbOption.MigrationsAssemblyName;
+            var connectionString = dbOption.ConnectionString;
+
+            if (dbOption.ConnectionString.IsFile(".txt")) //txt文件
+            {
+
+                connectionString = provider.GetFileText(dbOption.ConnectionString, $"未找到存放{databaseType.ToDescription()}数据库链接的文件");
+            }
+
+            builder = drivenProvider.Builder(builder, connectionString, optionsBuilder1);
+            return builder;
+        }
     }
 }

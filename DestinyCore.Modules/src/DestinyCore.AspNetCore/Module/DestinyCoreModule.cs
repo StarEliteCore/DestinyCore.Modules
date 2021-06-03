@@ -17,6 +17,7 @@ namespace DestinyCore.AspNetCore
     )]
     public class DestinyCoreModule : AppModule
     {
+        
         public override void ConfigureServices(ConfigureServicesContext context)
         {
             context.Services.AddFileProvider();

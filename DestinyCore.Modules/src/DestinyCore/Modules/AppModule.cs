@@ -1,11 +1,13 @@
-﻿using System;
+﻿using DestinyCore.Exceptions;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace DestinyCore.Modules
 {
-    public class AppModule : IAppModule
+    public abstract class AppModule : IAppModule
     {
         public bool Enable { get; set; } = true;
 
@@ -13,6 +15,22 @@ namespace DestinyCore.Modules
         {
 
         }
+
+        protected internal ConfigureServicesContext ConfigureServicesContext
+        {
+            get
+            {
+                if (_configureServicesContext == null)
+                {
+                    throw new AppException($"{nameof(ConfigureServicesContext)}仅适用于{nameof(ConfigureServices)}方法。");
+                }
+
+                return _configureServicesContext;
+            }
+            internal set => _configureServicesContext = value;
+        }
+
+        private ConfigureServicesContext _configureServicesContext;
 
         public virtual void ConfigureServices(ConfigureServicesContext context)
         {
@@ -60,6 +78,11 @@ namespace DestinyCore.Modules
                  !typeInfo.IsAbstract &&
                  !typeInfo.IsGenericType &&
                  typeof(IAppModule).GetTypeInfo().IsAssignableFrom(type);
+        }
+
+        public void Configure<TOptions>(Action<TOptions> configureOptions) where TOptions : class
+        {
+            ConfigureServicesContext.Services.Configure<TOptions>(configureOptions);
         }
     }
 }
