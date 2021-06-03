@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
+    <PackageIcon>logo.jpg</PackageIcon>
+    <PackageId>DestinyCore.AutoMapper</PackageId>
+    <Authors>DestinyCore</Authors>
+    <Product>DestinyCore</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,5 +17,11 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
