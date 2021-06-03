@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>DestinyCore.AspNetCore</PackageId>
+    <Authors>DestinyCore</Authors>
+    <Product>DestinyCore</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
+    <PackageIcon>logo.jpg</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -11,6 +18,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DestinyCore\DestinyCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ namespace DestinyCore.EntityFrameworkCore
     public abstract class EntityMappingConfiguration<TEntity, TKey> : IEntityMappingConfiguration<TEntity, TKey> where TEntity : class, IEntity<TKey>
         where TKey : IEquatable<TKey>
     {
-        public virtual Type DbContextType => typeof(DefaultDbContext);
+        public virtual Type DbContextType => typeof(DbContextBase);
 
         public Type EntityType => typeof(TEntity);
 

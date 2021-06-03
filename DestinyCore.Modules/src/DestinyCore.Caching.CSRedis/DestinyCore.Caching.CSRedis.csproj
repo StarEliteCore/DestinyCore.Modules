@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>DestinyCore.Caching.CSRedis</PackageId>
+    <Authors>DestinyCore</Authors>
+    <Product>DestinyCore</Product>
+    <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
+    <PackageIcon>logo.jpg</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CSRedisCore" Version="3.6.5" />
@@ -10,5 +17,11 @@
   <ItemGroup>
     <ProjectReference Include="..\DestinyCore.Caching\DestinyCore.Caching.csproj" />
     <ProjectReference Include="..\DestinyCore\DestinyCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\logo.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
