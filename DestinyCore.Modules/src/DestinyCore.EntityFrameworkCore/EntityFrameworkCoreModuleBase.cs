@@ -14,8 +14,9 @@ namespace DestinyCore.EntityFrameworkCore
       typeof(MediatorAppModule)
 
    )]
-    public abstract class EntityFrameworkCoreBaseModule : AppModule
+    public abstract class EntityFrameworkCoreModuleBase : AppModule
     {
+                        
         public override void ConfigureServices(ConfigureServicesContext context)
         {
             this.AddDbDriven(context.Services);
