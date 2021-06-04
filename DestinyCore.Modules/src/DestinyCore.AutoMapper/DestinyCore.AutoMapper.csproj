@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
-    <PackageIcon>logo.jpg</PackageIcon>
+    <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
     <PackageId>DestinyCore.AutoMapper</PackageId>
     <Authors>DestinyCore</Authors>
     <Product>DestinyCore</Product>
@@ -17,11 +17,5 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\logo.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 </Project>

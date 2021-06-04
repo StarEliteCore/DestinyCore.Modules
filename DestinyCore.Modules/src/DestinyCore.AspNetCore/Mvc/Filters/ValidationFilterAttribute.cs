@@ -13,6 +13,9 @@ using DestinyCore.Extensions;
 
 namespace DestinyCore.AspNetCore
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     //验证特性
     public class ValidationFilterAttribute : ActionFilterAttribute
@@ -24,7 +27,7 @@ namespace DestinyCore.AspNetCore
         public ValidationFilterAttribute(MethodInvocationValidator validator, ILoggerFactory loggerFactory)
         {
             _validator = validator;
-            _logger = loggerFactory.CreateLogger("Destiny.Core.Flow.AspNetCore.Mvc.Filters");
+            _logger = loggerFactory.CreateLogger(nameof(ValidationFilterAttribute));
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)

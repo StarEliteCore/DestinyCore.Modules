@@ -44,7 +44,7 @@ namespace DestinyCore.AspNetCore
             }
             catch (AppException ex)
             {
-                _logger.LogError(new EventId(), ex, ex.Message);
+                _logger.LogError(new EventId(), ex, ex.Message); //应该自定义一个状态码。待重写
                 await catchFunc(context, AjaxResultType.Error, ex, string.Empty, (int)HttpStatusCode.OK);
             }
             catch (Exception ex)

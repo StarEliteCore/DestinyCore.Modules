@@ -8,18 +8,12 @@
     <Product>DestinyCore</Product>
     <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
-    <PackageIcon>logo.jpg</PackageIcon>
+    <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DestinyCore\DestinyCore.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\logo.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 </Project>

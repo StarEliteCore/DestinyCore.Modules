@@ -13,9 +13,19 @@ namespace DestinyCore.AspNetCore
 
     public abstract class MvcModuleBase : AppModule
     {
+        /// <summary>
+        /// 前
+        /// </summary>
+        /// <param name="context"></param>
+        protected virtual void PreConfigureServices(ConfigureServicesContext context)
+        {
+
+
+        }
 
         public override void ConfigureServices(ConfigureServicesContext context)
         {
+            this.PreConfigureServices(context);
             AddCors(context);
             context.Services.AddControllers(o => this.AddMvcOptions(o)).AddNewtonsoftJson(options =>
             {
@@ -23,8 +33,17 @@ namespace DestinyCore.AspNetCore
 
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             });
-            context.Services.AddScoped<AuditLogFilterAttribute>();
-            context.Services.AddScoped<UnitOfWorkAtrrribute>();
+            this.AfterConfigureServices(context);
+        }
+
+        /// <summary>
+        /// 后
+        /// </summary>
+        /// <param name="context"></param>
+        protected virtual void AfterConfigureServices(ConfigureServicesContext context)
+        { 
+        
+        
         }
 
 

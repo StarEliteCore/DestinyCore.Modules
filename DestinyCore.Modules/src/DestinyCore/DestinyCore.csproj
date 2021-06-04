@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -6,14 +6,10 @@
     <Description></Description>
     <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
-    <PackageIcon>logo.jpg</PackageIcon>
+    <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\logo.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
   </ItemGroup>
   <ItemGroup>

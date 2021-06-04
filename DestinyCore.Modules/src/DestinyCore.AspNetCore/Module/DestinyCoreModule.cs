@@ -17,21 +17,7 @@ namespace DestinyCore.AspNetCore
     )]
     public class DestinyCoreModule : AppModule
     {
-        
-        public override void ConfigureServices(ConfigureServicesContext context)
-        {
-            context.Services.AddFileProvider();
-            var configuration = context.GetConfiguration();
-            context.Services.Configure<AppOptionSettings>(configuration.GetSection("Destiny"));
-
-            var settings = context.GetConfiguration<AppOptionSettings>("Destiny");
-            context.Services.AddObjectAccessor<AppOptionSettings>(settings);
-        }
-
-
-
-
-
+    
 
     }
 }

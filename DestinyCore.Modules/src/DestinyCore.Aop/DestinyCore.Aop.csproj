@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -8,18 +8,11 @@
     <PackageId>DestinyCore.Aop</PackageId>
     <Authors>DestinyCore</Authors>
     <Product>DestinyCore</Product>
-    <PackageIcon>logo.jpg</PackageIcon>
+    <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DestinyCore\DestinyCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\..\..\logo.jpg">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

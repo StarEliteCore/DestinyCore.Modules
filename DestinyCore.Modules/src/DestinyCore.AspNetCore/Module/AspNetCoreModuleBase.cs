@@ -20,11 +20,7 @@ namespace DestinyCore.AspNetCore
 
         public override void ConfigureServices(ConfigureServicesContext context)
         {
-            var settings = context.Services.GetObject<AppOptionSettings>();
-            context.Services.AddFileProvider();
-
             context.Services.AddHttpContextAccessor();
-    
             context.Services.AddTransient<IPrincipal>(provider =>
             {
                 IHttpContextAccessor accessor = provider.GetService<IHttpContextAccessor>();
