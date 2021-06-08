@@ -43,11 +43,17 @@ namespace DestinyCore.EntityFrameworkCore
 
         }
 
+        /// <summary>
+        /// 添加上下文操作构建器
+        /// </summary>
+        /// <typeparam name="TDbContext">动态上下文</typeparam>
+        /// <param name="provider">提供者</param>
+        /// <param name="dbOption">db操作</param>
+        /// <param name="builder">构建器</param>
+        /// <returns></returns>
+
         public static DbContextOptionsBuilder AddDbContextOptionsBuilder<TDbContext>(this IServiceProvider provider, DestinyContextOptions dbOption, DbContextOptionsBuilder builder)
         {
-
-
-
 
             if (dbOption.ConnectionString.IsNullOrEmpty())
             {
@@ -76,7 +82,7 @@ namespace DestinyCore.EntityFrameworkCore
             optionsBuilder1.MigrationsAssemblyName = dbOption.MigrationsAssemblyName;
             var connectionString = dbOption.ConnectionString;
 
-            if (dbOption.ConnectionString.IsFile(".txt")) //txt文件
+            if (dbOption.ConnectionString.IsTxtFile()) //txt文件
             {
 
                 connectionString = provider.GetFileText(dbOption.ConnectionString, $"未找到存放{databaseType.ToDescription()}数据库链接的文件");
@@ -84,6 +90,22 @@ namespace DestinyCore.EntityFrameworkCore
 
             builder = drivenProvider.Builder(builder, connectionString, optionsBuilder1);
             return builder;
+        }
+
+
+        /// <summary>
+        /// 添加默认仓储
+        /// </summary>
+        /// <param name="services">服务集合</param>
+        /// <param name="lifetime">生命周期</param>
+        /// <returns></returns>
+        public static IServiceCollection AddDefaultRepository(this IServiceCollection services, ServiceLifetime lifetime= ServiceLifetime.Scoped)
+        {
+
+            services.Add(new ServiceDescriptor(typeof(IRepository<,>), typeof(Repository<,>), lifetime));
+        
+            return services;
+        
         }
     }
 }

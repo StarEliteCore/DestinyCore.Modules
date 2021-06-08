@@ -22,5 +22,15 @@ namespace DestinyCore.Extensions
             return false;
 
         }
+
+        /// <summary>
+        /// 是否Txt文件
+        /// </summary>
+        /// <param name="fileName">要判断名字</param>
+        /// <returns>是true/否false</returns>
+        public static bool IsTxtFile(this string fileName)
+        {
+            return fileName.IsFile(".txt");
+        }
     }
 }
