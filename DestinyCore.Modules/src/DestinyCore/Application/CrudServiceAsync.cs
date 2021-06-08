@@ -1,32 +1,117 @@
-﻿using DestinyCore.Entity;
+﻿
+using DestinyCore;
+using DestinyCore.Application.Abstractions;
+using DestinyCore.Entity;
+using DestinyCore.Extensions;
+using DestinyCore.Filter;
+using DestinyCore.Filter.Abstract;
 using DestinyCore.Ui;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+
 
 namespace DestinyCore.Application
 {
-    public abstract class CrudServiceAsync<TEntity, TPrimaryKey> : ICrudServiceAsync<TEntity, TPrimaryKey>
-            where TEntity : IEntity<TPrimaryKey>, IEquatable<TPrimaryKey>
+    public class CrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto> : ICrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto>
+              where IEntity : class, IEntity<TPrimaryKey>
+              where TPrimaryKey : IEquatable<TPrimaryKey>
+              where IInputDto : class, IInputDto<TPrimaryKey>, new()
+              where IPagedListDto : IPagedListDto<TPrimaryKey>
     {
-        private readonly IServiceProvider _serviceProvider = null;
-        private readonly IRepository<TEntity, TPrimaryKey> _repository = null;
+        protected IServiceProvider ServiceProvider { get; set; }
+        protected IRepository<IEntity, TPrimaryKey> Repository { get; set; }
+        protected ILogger Logger { get; set; }
 
-        public Task<OperationResponse> AddAsync(TEntity entity)
+
+        public CrudServiceAsync(IServiceProvider serviceProvider, IRepository<IEntity, TPrimaryKey> repository, ILoggerFactory loggerFactory)
         {
-            throw new NotImplementedException();
+            this.ServiceProvider = serviceProvider;
+            this.Repository = repository;
+            this.Logger = loggerFactory.CreateLogger<CrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto>>();
         }
 
-        public Task<OperationResponse> DeleteAsync(TPrimaryKey key)
+        protected IQueryable<IEntity> Entities => this.Repository.Entities;
+
+
+
+
+        protected IQueryable<IEntity> TrackEntities => this.Repository.TrackEntities;
+
+        /// <summary>
+        /// 异步创建
+        /// </summary>
+        /// <param name="inputDto"></param>
+        /// <returns></returns>
+        public virtual async Task<OperationResponse> CreateAsync(IInputDto inputDto)
         {
-            throw new NotImplementedException();
+            inputDto.NotNull(nameof(inputDto));
+
+            return await this.Repository.InsertAsync(inputDto,this.InsertCheckAsync);
         }
 
-        public Task<OperationResponse> UpdateAsync(TEntity entity)
+
+        /// <summary>
+        /// 插入检查
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        protected virtual Task InsertCheckAsync(IInputDto dto)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
+        }
+
+
+
+
+        /// <summary>
+        /// 异步删除
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public virtual Task<OperationResponse> DeleteAsync(TPrimaryKey key)
+        {
+            return this.Repository.DeleteAsync(key);
+        }
+
+
+        /// <summary>
+        /// 异步更新
+        /// </summary>
+        /// <param name="inputDto"></param>
+        /// <returns></returns>
+
+        public virtual Task<OperationResponse> UpdateAsync(IInputDto inputDto)
+        {
+            inputDto.NotNull(nameof(inputDto));
+            return this.Repository.UpdateAsync(inputDto,this.UpdateCheckAsync);
+        }
+
+
+        /// <summary>
+        ///更新检查
+        /// </summary>
+        /// <param name="inputDto"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        protected virtual Task UpdateCheckAsync(IInputDto inputDto, IEntity entity)
+        {
+            return Task.CompletedTask;
+
+        }
+
+        /// <summary>
+        /// 异步得到分页数据
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public virtual Task<IPagedResult<IPagedListDto>> GetPageAsync(PageRequest request)
+        {
+            request.NotNull(nameof(request));
+            return this.Entities.ToPageAsync<IEntity,IPagedListDto>(request);
         }
     }
 }

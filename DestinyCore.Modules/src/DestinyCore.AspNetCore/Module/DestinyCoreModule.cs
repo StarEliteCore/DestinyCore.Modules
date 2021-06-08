@@ -1,13 +1,10 @@
-﻿using DestinyCore.Dependency;
+﻿using DestinyCore.Application;
+using DestinyCore.Application.Abstractions;
+using DestinyCore.Dependency;
 using DestinyCore.Events;
-using DestinyCore.Extensions;
 using DestinyCore.Modules;
-using DestinyCore.Options;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 namespace DestinyCore.AspNetCore
 {
     [DependsOn(
@@ -17,7 +14,12 @@ namespace DestinyCore.AspNetCore
     )]
     public class DestinyCoreModule : AppModule
     {
-    
 
+
+
+        public override void ConfigureServices(ConfigureServicesContext context)
+        {
+            context.Services.TryAddScoped(typeof(ICrudServiceAsync<,,,>),typeof(CrudServiceAsync<,,,>));
+        }
     }
 }

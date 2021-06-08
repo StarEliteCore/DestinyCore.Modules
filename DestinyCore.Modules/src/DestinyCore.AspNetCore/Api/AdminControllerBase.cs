@@ -11,5 +11,7 @@ namespace DestinyCore.AspNetCore.Api
     [Authorize]
     public abstract class AdminControllerBase : ApiControllerBase
     {
+      
+
     }
 }
