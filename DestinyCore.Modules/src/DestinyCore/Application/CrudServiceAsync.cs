@@ -12,13 +12,7 @@ namespace DestinyCore.Application
             where TEntity : IEntity<TPrimaryKey>, IEquatable<TPrimaryKey>
     {
         private readonly IServiceProvider _serviceProvider = null;
-        private readonly IRepository<TEntity, TPrimaryKey> _efCoreRepository = null;
-
-        public CrudServiceAsync(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-            _efCoreRepository = _serviceProvider.GetService<IRepository<TEntity, TPrimaryKey>>();
-        }
+        private readonly IRepository<TEntity, TPrimaryKey> _repository = null;
 
         public Task<OperationResponse> AddAsync(TEntity entity)
         {
