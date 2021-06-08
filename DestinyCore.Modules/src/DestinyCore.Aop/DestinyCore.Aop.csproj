@@ -9,6 +9,7 @@
     <Authors>DestinyCore</Authors>
     <Product>DestinyCore</Product>
     <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

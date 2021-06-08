@@ -9,6 +9,7 @@
     <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

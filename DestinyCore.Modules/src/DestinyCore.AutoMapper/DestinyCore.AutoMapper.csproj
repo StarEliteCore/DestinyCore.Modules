@@ -9,6 +9,7 @@
     <PackageId>DestinyCore.AutoMapper</PackageId>
     <Authors>DestinyCore</Authors>
     <Product>DestinyCore</Product>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

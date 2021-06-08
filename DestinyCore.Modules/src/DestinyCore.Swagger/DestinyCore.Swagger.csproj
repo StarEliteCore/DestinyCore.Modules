@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
     <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />

@@ -116,6 +116,11 @@ namespace DestinyCore.MongoDB.Repositorys
             var result = await Collection.DeleteOneAsync(filters);
             return result.DeletedCount > 0 ? OperationResponse.Ok("删除成功") : OperationResponse.Error("删除失败");
         }
+        public async Task<OperationResponse> DeleteAsync(FilterDefinition<TEntity> delete)
+        {
+            var result = await Collection.DeleteManyAsync(delete);
+            return result.DeletedCount > 0 ? OperationResponse.Ok("删除成功") : OperationResponse.Error("删除失败");
+        }
     }
 }
 
