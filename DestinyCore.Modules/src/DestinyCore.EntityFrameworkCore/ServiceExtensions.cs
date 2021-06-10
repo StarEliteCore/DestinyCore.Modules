@@ -101,9 +101,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// <returns></returns>
         public static IServiceCollection AddDefaultRepository(this IServiceCollection services, ServiceLifetime lifetime= ServiceLifetime.Scoped)
         {
-
             services.Add(new ServiceDescriptor(typeof(IRepository<,>), typeof(Repository<,>), lifetime));
-        
             return services;
         
         }
