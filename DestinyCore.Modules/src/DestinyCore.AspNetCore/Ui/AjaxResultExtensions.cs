@@ -20,6 +20,7 @@ namespace DestinyCore.AspNetCore
             return response.ToAjaxResult();
         }
 
+
         public static AjaxResult ToAjaxResult<T>(this OperationResponse<T> operationResponse)
         {
             var (message, type) = operationResponse.GetMessageWithAjaxType(operationResponse.Type);
