@@ -8,82 +8,120 @@ namespace DestinyCore.AspNetCore
     /// <summary>
     /// Ajax操作结果
     /// </summary>
-    public class AjaxResult: ResultBase<object>, IHasResultType<AjaxResultType>
+    public class AjaxResult: AjaxResult<object>, IHasResultType<AjaxResultType>
     {
-        public AjaxResult() : this(null)
+        public AjaxResult()
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success) : this("", null, type)
+        public AjaxResult(AjaxResultType type = AjaxResultType.Success)
+            : base("", null, type)
         {
         }
 
-        public AjaxResult(string message, AjaxResultType type = AjaxResultType.Success, object data = null) : this(message, data, type)
+        public AjaxResult(string message, AjaxResultType type = AjaxResultType.Success, object data = null)
+            : base(message, data, type)
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success, object data = null) : this("", data, type)
+        public AjaxResult(AjaxResultType type = AjaxResultType.Success, object data = null)
+            : base("", data, type)
         {
         }
 
-
-        public AjaxResult(string message, object data, AjaxResultType type)
+        public AjaxResult(string message, object data, AjaxResultType type):base(message, data, type)
         {
-            this.Message = message;
-            this.Data = data;
-            this.Type = type;
-            this.Success = Succeeded();
+          
         }
 
-        public AjaxResult(string message, bool success, object data, AjaxResultType type)
+        public AjaxResult(string message, bool success, object data, AjaxResultType type):base(message,success,data,type)
         {
-            this.Message = message;
-            this.Data = data;
-            this.Type = type;
-            this.Success = success;
-           
+        
         }
-
-     
 
         /// <summary>
-        /// 返回类型
+        /// 只得到数据
         /// </summary>
+        /// <typeparam name="TData"></typeparam>
+        /// <returns></returns>
+        public TData GetData<TData>()
+        {
 
-        public AjaxResultType Type { get; set; }
+            return (TData)this.Data;
+        }
+    }
 
-        /// <summary>
-        /// 是否成功
-        /// </summary>
+
+    /// <summary>
+    /// Ajax操作结果
+    /// </summary>
+    public class AjaxResult<TData> : ResultBase<TData>, IHasResultType<AjaxResultType>
+    {
+        public AjaxResultType Type
+        {
+            get;
+            set;
+        }
+
+        public AjaxResult()
+        {
+        }
+
+        public AjaxResult(AjaxResultType type = AjaxResultType.Success)
+            : this("", default(TData), type)
+        {
+        }
+
+        public AjaxResult(string message, AjaxResultType type = AjaxResultType.Success, TData data = default(TData))
+            : this(message, data, type)
+        {
+        }
+
+        public AjaxResult(AjaxResultType type = AjaxResultType.Success, TData data = default(TData))
+            : this("", data, type)
+        {
+        }
+
+        public AjaxResult(string message, TData data, AjaxResultType type)
+        {
+            Message = message;
+            Data = data;
+            Type = type;
+            Success = Succeeded();
+        }
+
+        public AjaxResult(string message, bool success, TData data, AjaxResultType type)
+        {
+            Message = message;
+            Data = data;
+            Type = type;
+            Success = success;
+        }
+
         public bool Succeeded()
         {
             return Type == AjaxResultType.Success;
         }
 
-        /// <summary>
-        /// 是否错误
-        /// </summary>
         public bool Error()
         {
             return Type == AjaxResultType.Error;
         }
 
-        /// <summary>
-        /// 转成对象
-        /// </summary>
-        /// <returns></returns>
-        public object ToObject()
+        public virtual object ToObject()
         {
-            return new { Data, Message, Success, Type };
+            return new
+            {
+                Data,
+                Message,
+                Success,
+                Type
+            };
         }
 
-        /// <summary>
-        /// 转成JSON
-        /// </summary>
-        /// <returns></returns>
-        public string ToJson()
+        public virtual string ToJson()
         {
-            return this.ToObject().ToJson();
+            return ToObject().ToJson();
         }
     }
 }

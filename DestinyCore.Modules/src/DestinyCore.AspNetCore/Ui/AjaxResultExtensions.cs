@@ -9,25 +9,43 @@ namespace DestinyCore.AspNetCore
     {
         public static AjaxResult ToAjaxResult(this OperationResponse operationResponse)
         {
-            var message = operationResponse.Message ?? operationResponse.Type.ToDescription();
-            AjaxResultType type = operationResponse.Type.ToAjaxResultType();
+            var (message, type) = operationResponse.GetMessageWithAjaxType(operationResponse.Type);
             return new AjaxResult(message, type, operationResponse.Data) { Success = operationResponse.Success };
         }
 
         public static async Task<AjaxResult> ToAjaxResult(this Task<OperationResponse> operationResponse)
         {
 
-            var result = await operationResponse;
-            var message = result.Message ?? result.Type.ToDescription();
-            AjaxResultType type = result.Type.ToAjaxResultType();
-            return new AjaxResult(message, type, result.Data) { Success = result.Success };
+            var response = await operationResponse;
+            return response.ToAjaxResult();
         }
 
-        public static AjaxResult ToAjaxResult<T>(this OperationResponse<T> operationResult)
+        public static AjaxResult ToAjaxResult<T>(this OperationResponse<T> operationResponse)
         {
-            var message = operationResult.Message ?? operationResult.Type.ToDescription();
-            AjaxResultType type = operationResult.Type.ToAjaxResultType();
-            return new AjaxResult(message, type, operationResult.Data) { Success = operationResult.Success };
+            var (message, type) = operationResponse.GetMessageWithAjaxType(operationResponse.Type);
+            return new AjaxResult(message, type, operationResponse.Data) { Success = operationResponse.Success };
+        }
+
+
+        public static async Task<AjaxResult<T>> ToAjaxResult<T>(this Task<OperationResponse<T>> operationResponse)
+        {
+            var response = await operationResponse.ConfigureAwait(false);
+            var (message,type) = response.GetMessageWithAjaxType(response.Type);
+            return new AjaxResult<T>(message, type, response.Data) { Success = response.Success };
+
+        }
+
+        /// <summary>
+        /// 得到消息与结果类型
+        /// </summary>
+        /// <param name="resultBase"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static (string message, AjaxResultType type) GetMessageWithAjaxType(this ResultBase resultBase, OperationResponseType type)
+        {
+            var message = resultBase.Message ?? type.ToDescription();
+            return (message, type.ToAjaxResultType());
+           
         }
 
         public static AjaxResultType ToAjaxResultType(this OperationResponseType responseType)
