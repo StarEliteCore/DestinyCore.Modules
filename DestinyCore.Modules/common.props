@@ -5,8 +5,8 @@
     <NoWarn>$(NoWarn);CS1591;CS0436</NoWarn>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <Authors>DestinyCore</Authors>
-    <Product>DestinyCore</Product>
+    <Authors>StarElite</Authors>
+    <Product>StarElite</Product>
     <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
