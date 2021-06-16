@@ -3,7 +3,7 @@
 $apiKey = $args[0]
 
 # Get the version
-[xml]$commonPropsXml = Get-Content (Join-Path $rootFolder "common.props")
+[xml]$commonPropsXml = Get-Content (Join-Path $rootFolder "./DestinyCore.Modules/common.props")
 $version = $commonPropsXml.Project.PropertyGroup.Version
 
 # Publish all packages

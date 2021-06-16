@@ -1,4 +1,5 @@
-﻿using DestinyCore.Audit.Dto;
+﻿using AspectCore.DependencyInjection;
+using DestinyCore.Audit.Dto;
 using DestinyCore.Audit.EntityHistory;
 using DestinyCore.Dependency;
 using DestinyCore.Entity;
@@ -25,17 +26,17 @@ namespace DestinyCore.EntityFrameworkCore
     /// </summary>
     public abstract class DbContextBase : DbContext
     {
-        protected readonly IServiceProvider _serviceProvider = null;
-        protected readonly AppOptionSettings _option = null;
-        protected readonly Microsoft.Extensions.Logging.ILogger _logger = null;
+        [FromServiceContext]
+        public  ILazyServiceProvider ServiceProvider { get; set; }
+        protected  AppOptionSettings _option;
+        protected  Microsoft.Extensions.Logging.ILogger _logger;
         private readonly IPrincipal _principal;
-        protected DbContextBase(DbContextOptions options, IServiceProvider serviceProvider)
+        protected DbContextBase(DbContextOptions options)
              : base(options)
         {
-            _serviceProvider = serviceProvider;
-            _option = serviceProvider.GetService<IObjectAccessor<AppOptionSettings>>()?.Value;
-            _logger = serviceProvider.GetLogger(GetType());
-            _principal = serviceProvider.GetService<IPrincipal>();
+            _option = ServiceProvider.LazyGetService<IObjectAccessor<AppOptionSettings>>()?.Value;
+            _logger = ServiceProvider.GetLogger(GetType());
+            _principal = ServiceProvider.LazyGetService<IPrincipal>();
         }
 
         public IUnitOfWork UnitOfWork { get; set; }
@@ -45,7 +46,7 @@ namespace DestinyCore.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            var typeFinder = _serviceProvider.GetService<ITypeFinder>();
+            var typeFinder = ServiceProvider.LazyGetService<ITypeFinder>();
 
             IEntityMappingConfiguration[] mappings = typeFinder.Find(o => o.IsDeriveClassFrom<IEntityMappingConfiguration>()).Select(o => Activator.CreateInstance(o) as IEntityMappingConfiguration).ToArray();
             foreach (var item in mappings)
@@ -139,7 +140,7 @@ namespace DestinyCore.EntityFrameworkCore
             {
                 if (count > 0 && sender != null && sender is List<AuditEntryDto> senders)
                 {
-                    var scoped = _serviceProvider.GetService<DictionaryScoped>();
+                    var scoped = ServiceProvider.LazyGetService<DictionaryScoped>();
                     var auditChange = scoped.AuditChange;
                     if (auditChange != null)
                     {
@@ -165,7 +166,7 @@ namespace DestinyCore.EntityFrameworkCore
                 return null;
             }
             IEnumerable<EntityEntry> entityEntry = FindChangedEntries();
-            return _serviceProvider.GetRequiredService<IAuditHelper>()?.GetAuditEntity(entityEntry);
+            return ServiceProvider.LazyGetService<IAuditHelper>()?.GetAuditEntity(entityEntry);
 
         }
         /// <summary>
