@@ -21,6 +21,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// </summary>
         /// <typeparam name="TDbContext">上下文</typeparam>
         /// <param name="services">服务集合</param>
+        /// <param name="dbOption"></param>
         /// <param name="optionsAction">操作委托</param>
         /// <returns>返回已添加上下文服务集合</returns>
 

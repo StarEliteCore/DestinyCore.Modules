@@ -33,7 +33,7 @@ namespace DestinyCore.Extensions
         /// <summary>
         /// 得到或添加Singleton服务
         /// </summary>
-        /// <typeparam name="TType"></typeparam>
+        /// <typeparam name="TServiceType"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
         /// <param name="services"></param>
         /// <returns></returns>
@@ -206,7 +206,6 @@ where TImplementation : class, TServiceType
         /// 根据配置得到文件内容
         /// </summary>
         /// <param name="services">服务接口</param>
-        /// <param name=""></param>
         /// <param name="sectionKey">分区键</param>
         /// <param name="fileNotExistsMsg">文件不存提示信息</param>
         /// <returns>返回文件中的文件</returns>

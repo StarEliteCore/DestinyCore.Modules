@@ -20,6 +20,7 @@ namespace DestinyCore.Caching
         /// <summary>
         /// 得到或添加
         /// </summary>
+        /// <param name="key"></param>
         /// <param name="func"></param>
         /// <param name="expireSeconds">过期秒数-1,0不过期。</param>
         /// <returns></returns>
@@ -38,7 +39,7 @@ namespace DestinyCore.Caching
         /// <summary>
         /// 得到或添加
         /// </summary>
-        /// <param name="key"><键/param>
+        /// <param name="key">键</param>
         /// <param name="func"></param>
         /// <param name="token"></param>
         /// <param name="expireSeconds">过期秒数-1,0不过期。</param>

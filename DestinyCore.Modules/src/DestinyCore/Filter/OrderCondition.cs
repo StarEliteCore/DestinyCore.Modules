@@ -7,7 +7,7 @@ namespace DestinyCore.Filter
 {
     public class OrderCondition
     {
-        // <summary>
+        /// <summary>
         /// 初始化一个<see cref="OrderCondition"/>类型的新实例
         /// </summary>
         public OrderCondition() : this(null)

@@ -20,7 +20,6 @@ namespace DestinyCore.Validation
         /// </summary>
         /// <param name="model">要验证的模型</param>
         /// <returns>
-
         /// </returns>
         IEnumerable<ValidationFailure> Validate(object model);
 

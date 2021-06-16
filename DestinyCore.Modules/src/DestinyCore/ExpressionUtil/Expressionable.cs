@@ -56,6 +56,7 @@ namespace DestinyCore
         /// <summary>
         /// 表达树Or操作
         /// </summary>
+        /// <param name="isOr"></param>
         /// <param name="exp"></param>
         /// <returns></returns>
         public Expressionable<T> OrIf(bool isOr, Expression<Func<T, bool>> exp)

@@ -54,7 +54,7 @@ namespace DestinyCore.Extensions
         /// <summary>
         /// 生成MD5摘要
         /// </summary>
-        /// <param name="original">元数据</param>
+        /// <param name="value">元数据</param>
         /// <returns>MD5摘要</returns>
         public static byte[] ToMD5(this byte[] value) => new MD5CryptoServiceProvider().ComputeHash(value);
         #endregion
@@ -98,6 +98,7 @@ namespace DestinyCore.Extensions
         /// </summary>
         /// <param name="value">字符串</param>
         /// <param name="vKey">密钥</param>
+        /// <param name="ivVal"></param>
         /// <returns></returns>
         public static string DESEncrypt(this string value, string vKey = "microsoft", string ivVal = "microsoft")
         {
@@ -124,6 +125,7 @@ namespace DestinyCore.Extensions
         /// </summary>
         /// <param name="value">被加密的字符串</param>
         /// <param name="vKey">密钥</param>
+        /// <param name="ivVal"></param>
         /// <returns></returns>
         public static string DESDecrypt(this string value, string vKey = "microsoft", string ivVal = "microsoft")
         {

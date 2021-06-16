@@ -27,20 +27,22 @@ namespace DestinyCore.Audit.Dto
         public double ExecutionDuration { get; set; }
 
 
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         /// <summary>
         ///获取或设置 创建时间
         /// </summary>
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         [DisplayName("审计时间")]
         public DateTime CreatedTime { get; set; }
 
-        [DisplayName("用户名")]
         /// <summary>
         /// 获取或设置 操作用户名
         /// </summary>
+        [DisplayName("用户名")]
+
         public string UserName { get; set; }
 
-
+        /// <summary>
+        /// 昵称
         /// </summary>
         public string NickName { get; set; }
 

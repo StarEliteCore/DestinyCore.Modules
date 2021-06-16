@@ -2,10 +2,10 @@
 
 namespace DestinyCore.Modules
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     /// <summary>
     /// 依赖器
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class DependsOnAttribute : Attribute, IDependedTypesProvider
     {
         /// <summary>

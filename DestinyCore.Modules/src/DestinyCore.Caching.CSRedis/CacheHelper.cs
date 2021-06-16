@@ -29,6 +29,7 @@ namespace DestinyCore.Caching.CSRedis
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="func"></param>
+        /// <param name="expireSeconds"></param>
         /// <returns></returns>
         public static TCacheData GetOrAdd<TKey, TCacheData>(
          TKey key,
@@ -70,8 +71,9 @@ namespace DestinyCore.Caching.CSRedis
         /// <summary>
         /// 得到或添加
         /// </summary>
-        /// <param name="key"><键/param>
+        /// <param name="key">键</param>
         /// <param name="func"></param>
+        /// <param name="expireSeconds"></param>
         /// <param name="token"></param>
         /// <returns>返回得到或添加后的缓存数据</returns>
         async public static Task<TCacheData> GetOrAddAsync<TKey, TCacheData>(
@@ -109,6 +111,7 @@ namespace DestinyCore.Caching.CSRedis
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
+        /// <param name="expireSeconds"></param>
         public static void Set<TKey, TCacheData>(TKey key, TCacheData value, int expireSeconds = -1)
         {
             value.NotNull(nameof(value));
@@ -120,6 +123,7 @@ namespace DestinyCore.Caching.CSRedis
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
+        /// <param name="expireSeconds"></param>
         /// <param name="token"></param>
         /// <returns></returns>
         async public static Task SetAsync<TKey, TCacheData>(TKey key, TCacheData value, int expireSeconds = -1, CancellationToken token = default)

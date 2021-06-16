@@ -1,18 +1,14 @@
-﻿using DestinyCore.Dependency;
-using DestinyCore.Entity;
+﻿using DestinyCore.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DestinyCore.EntityFrameworkCore.DbDrivens
 {
-    [DatabaseType(DataBaseType.MySql)]
 
     /// <summary>
     /// MYsql驱动提供者
     /// </summary>
+    [DatabaseType(DataBaseType.MySql)]
     public class MySqlDbContextDrivenProvider : IDbContextDrivenProvider
     {
 

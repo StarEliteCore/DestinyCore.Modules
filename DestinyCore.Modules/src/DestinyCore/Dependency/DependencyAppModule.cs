@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Reflection;
+using AspectCore.DependencyInjection;
 
 namespace DestinyCore.Dependency
 {
@@ -18,14 +19,13 @@ namespace DestinyCore.Dependency
 
             context.Services.AddTransient(typeof(Lazy<>), typeof(LazyFactory<>));
             var services = context.Services;
-
+            
             AddAutoInjection(services);
         }
 
         private void AddAutoInjection(IServiceCollection services)
         {
             //var servicesTypes = AssemblyHelper.GetAssembliesByName("DestinyCore.Services", "DestinyCore.Repository").SelectMany(type=>type.DefinedTypes);
-
             var typeFinder = services.GetOrAddSingletonService<ITypeFinder, TypeFinder>();
             var baseTypes = new Type[] { typeof(IScopedDependency), typeof(ITransientDependency), typeof(ISingletonDependency) };
 

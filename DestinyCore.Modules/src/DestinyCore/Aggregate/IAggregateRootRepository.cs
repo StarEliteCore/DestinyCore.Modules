@@ -57,14 +57,7 @@ namespace DestinyCore
 
         #region 添加
 
-        /// <summary>
-        /// 以异步DTO插入实体
-        /// </summary>
-        /// <typeparam name="TInputDto">添加DTO类型</typeparam>
-        /// <param name="dto">添加DTO</param>
-        /// <param name="checkFunc">添加信息合法性检查委托</param>
-        /// <param name="insertFunc">由DTO到实体的转换委托</param>
-        /// <returns>业务操作结果</returns>
+
         //Task<OperationResponse> InsertAsync<TInputDto>(TInputDto dto, Func<TInputDto, Task> checkFunc = null, Func<TInputDto, TEntity, Task<TEntity>> insertFunc = null, Func<TEntity, TInputDto> completeFunc = null) where TInputDto : IInputDto<Tkey>;
         /// <summary>
         /// 以异步插入实体
@@ -139,8 +132,9 @@ namespace DestinyCore
         /// 异步删除所有符合特定条件的实体
         /// </summary>
         /// <param name="predicate">查询条件谓语表达式</param>
+        /// <param name="cancellationToken"></param>
         /// <returns>操作影响的行数</returns>
-        Task<int> DeleteBatchAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> DeleteBatchAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 删除

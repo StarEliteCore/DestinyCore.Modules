@@ -15,6 +15,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="operation"></param>
         /// <param name="message">提示消息</param>
         public static OperationResponse<TData> Ok<TData>(this OperationResponse<TData> operation, string message)
         {
@@ -24,6 +25,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="operation"></param>
         /// <param name="data">返回成功数据</param>
         /// <returns></returns>
         public static OperationResponse<TData> Ok<TData>(this OperationResponse<TData> operation, TData data)
@@ -34,6 +36,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="operation"></param>
         /// <param name="message">提示消息</param>
         /// <param name="data">返回成功数据</param>
         /// <returns></returns>
@@ -70,6 +73,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="response"></param>
         /// <param name="message">提示消息</param>
         public static OperationResponse Ok(this OperationResponse response, string message)
         {
@@ -79,6 +83,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="response"></param>
         /// <param name="data">返回成功数据</param>
         /// <returns></returns>
         public static OperationResponse Ok(this OperationResponse response, object data)
@@ -89,6 +94,7 @@ namespace DestinyCore.Ui
         /// <summary>
         /// 成功
         /// </summary>
+        /// <param name="response"></param>
         /// <param name="message">提示消息</param>
         /// <param name="data">返回成功数据</param>
         /// <returns></returns>

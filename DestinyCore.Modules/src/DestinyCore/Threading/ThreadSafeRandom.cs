@@ -11,10 +11,10 @@ namespace DestinyCore.Threading
     public class ThreadSafeRandom : Random
     {
         /// <summary>
-        /// 使用ThreadLocal<T>类来创建一个线程安全的随机数生成器
+        /// 使用ThreadLocal 类来创建一个线程安全的随机数生成器
         /// </summary>
         private readonly ThreadLocal<Random> random =
-            new ThreadLocal<Random>(() => new Random(MakeRandomSeed()));
+            new(() => new Random(MakeRandomSeed()));
 
         public override int Next()
         {

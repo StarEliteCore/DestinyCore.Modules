@@ -20,8 +20,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// <summary>
         /// 添加工作单元
         /// </summary>
-        /// <typeparam name="TIUnitOfWork"></typeparam>
-        /// <typeparam name="UnitOfWork"></typeparam>
+        /// <typeparam name="TDbContext"></typeparam>
         /// <param name="services"></param>
         /// <param name="lifetime"></param>
         /// <returns></returns>
@@ -39,6 +38,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// <summary>
         /// 开启事务 如果成功提交事务，失败回滚事务
         /// </summary>
+        /// <param name="unitOfWork"></param>
         /// <param name="action">要执行的操作</param>
         /// <returns></returns>
         public static void UseTran(this IUnitOfWork unitOfWork, Action action)
@@ -79,6 +79,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// <summary>
         /// 开启事务 如果成功提交事务，失败回滚事务
         /// </summary>
+        /// <param name="unitOfWork"></param>
         /// <param name="func"></param>
         /// <returns>返回操作结果</returns>
         public static async Task<OperationResponse> UseTranAsync(this IUnitOfWork unitOfWork, Func<Task<OperationResponse>> func)
@@ -125,6 +126,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// <summary>
         /// 开启事务 如果成功提交事务，失败回滚事务
         /// </summary>
+        /// <param name="unitOfWork"></param>
         /// <param name="func"></param>
         /// <returns>返回操作结果</returns>
         public static OperationResponse UseTran(this IUnitOfWork unitOfWork, Func<OperationResponse> func)

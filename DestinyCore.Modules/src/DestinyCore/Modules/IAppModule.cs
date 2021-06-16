@@ -20,7 +20,7 @@ namespace DestinyCore.Modules
 
 
         /// <summary>
-        //得到依赖集合
+        /// 得到依赖集合
         /// </summary>
         /// <param name="moduleType"></param>
         /// <returns></returns>
