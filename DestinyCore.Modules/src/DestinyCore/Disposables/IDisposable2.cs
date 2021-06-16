@@ -30,7 +30,7 @@ namespace DestinyCore
         public void Dispose()
         {
             Dispose(true);
-            ///告诉GC，不要调用析构函数
+            //告诉GC，不要调用析构函数
             GC.SuppressFinalize(this);
         }
 
@@ -42,7 +42,7 @@ namespace DestinyCore
             }
             if (disposing)
             {
-                ///告诉GC，不要调用析构函数
+                //告诉GC，不要调用析构函数
                 GC.SuppressFinalize(this);
             }
 

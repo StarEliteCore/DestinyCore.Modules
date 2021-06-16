@@ -8,10 +8,10 @@ using System.Text;
 
 namespace DestinyCore.EntityFrameworkCore.DbDrivens
 {
-    [DatabaseType(DataBaseType.SqlServer)]
     /// <summary>
     /// SqlServer驱动提供者
     /// </summary>
+    [DatabaseType(DataBaseType.SqlServer)]
     public class SqlServerDbContextDrivenProvider : IDbContextDrivenProvider
     {
 

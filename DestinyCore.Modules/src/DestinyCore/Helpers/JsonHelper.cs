@@ -256,7 +256,7 @@ namespace DestinyCore.Helpers
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source">需要转换为JSON格式字符串的对象</param>
         /// <param name="func">集合/数组条件筛选方法委托，返回筛选后的集合/数组</param>
-        /// <param name="isFilterNull">是否过滤IEnumerable<TSource> source中的null对象，默认为true</param>
+        /// <param name="isFilterNull">是否过滤IEnumerable&lt;TSource&gt; source中的null对象，默认为true</param>
         /// <returns>标准的JSON格式的字符串</returns>
         private static string DelegateToJson<TSource, TResult>(IEnumerable<TSource> source, Func<TSource[], IEnumerable<TResult>> func, bool isFilterNull = true)
         {
@@ -295,7 +295,7 @@ namespace DestinyCore.Helpers
         /// <typeparam name="TSource"></typeparam>
         /// <param name="source">需要转换为JSON格式字符串的对象</param>
         /// <param name="func">JSON处理方法委托，返回JSON格式的字符串</param>
-        /// <param name="isFilterNull">是否过滤IEnumerable<TSource> source中的null对象，默认为true</param>
+        /// <param name="isFilterNull">是否过滤IEnumerable source中的null对象，默认为true</param>
         /// <returns>标准的JSON格式的字符串</returns>
         private static string DelegateToJson<TSource>(IEnumerable<TSource> source, Func<TSource[], string> func, bool isFilterNull = true)
         {

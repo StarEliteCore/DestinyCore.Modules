@@ -59,15 +59,16 @@ namespace DestinyCore.Audit
 
         public string UserId { get; set; }
 
-        public  string Message { get; set; }
+        public string Message { get; set; }
 
-        [DisplayName("用户名")]
         /// <summary>
         /// 获取或设置 操作用户名
         /// </summary>
+        [DisplayName("用户名")]
         public string UserName { get; set; }
 
-
+        /// <summary>
+        /// 昵称
         /// </summary>
         public string NickName { get; set; }
     }

@@ -50,7 +50,7 @@ namespace DestinyCore.CodeGenerator
 
 
         /// <summary>
-        // 是否创建
+        /// 是否创建
         /// </summary>
         public bool IsCreation { get; set; } = true;
 

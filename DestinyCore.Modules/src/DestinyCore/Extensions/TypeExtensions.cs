@@ -34,7 +34,7 @@ namespace DestinyCore.Extensions
             return ((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
         }
 
-
+        /// <summary>
         /// 判断当前类型是否可由指定类型派生
         /// </summary>
         public static bool IsDeriveClassFrom<TBaseType>(this Type type, bool canAbstract = false)
@@ -170,7 +170,7 @@ namespace DestinyCore.Extensions
         /// <summary>
         /// 从类型成员获取指定Attribute特性
         /// </summary>
-        /// <typeparam name="type">Attribute特性类型</typeparam>
+        /// <param name="type">Attribute特性类型</param>
         /// <param name="memberInfo">类型类型成员</param>
         /// <param name="inherit">是否从继承中查找</param>
         /// <returns>存在返回第一个，不存在返回null</returns>

@@ -19,6 +19,7 @@ namespace DestinyCore.EntityFrameworkCore
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="connectionString"></param>
+        /// <param name="optionsBuilder"></param>
         /// <returns></returns>
 
         DbContextOptionsBuilder Builder(DbContextOptionsBuilder builder,string connectionString, DestinyContextOptionsBuilder optionsBuilder);

@@ -1,15 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\..\common.props" />
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>DestinyCore.AspNetCore</PackageId>
-    <Authors>DestinyCore</Authors>
-    <Product>DestinyCore</Product>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/DestinyCore/DestinyCore.Modules</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/DestinyCore/DestinyCore.Modules</RepositoryUrl>
-    <PackageIconUrl>https://wangzewei.oss-cn-beijing.aliyuncs.com/images/20210604233438.png</PackageIconUrl>
-    <Version>1.0.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -20,5 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\DestinyCore\DestinyCore.csproj" />
   </ItemGroup>
-
 </Project>

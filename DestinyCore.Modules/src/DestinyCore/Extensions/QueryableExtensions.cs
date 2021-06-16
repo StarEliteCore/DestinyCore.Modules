@@ -61,7 +61,7 @@ namespace DestinyCore.Extensions
         /// <typeparam name="TEntity">动态实体类型</typeparam>
         /// <param name="source">数据源</param>
         /// <param name="predicate">查询条件表达式</param>
-        /// <param name="pageParameters">分页参数</param>
+        /// <param name="request">分页参数</param>
         /// <returns></returns>
         public static async Task<IPagedResult<TEntity>> ToPageAsync<TEntity>(this IQueryable<TEntity> source, Expression<Func<TEntity, bool>> predicate, IPagedRequest request)
 
@@ -82,7 +82,7 @@ namespace DestinyCore.Extensions
         /// <typeparam name="TResult">要返回动态实体类型</typeparam>
         /// <param name="source">数据源</param>
         /// <param name="predicate">查询条件表达式</param>
-        /// <param name="pageParameters">分页参数</param>
+        /// <param name="request">分页参数</param>
         /// <param name="selector">数据筛选表达式</param>
         /// <returns></returns>
         public static async Task<IPagedResult<TResult>> ToPageAsync<TEntity, TResult>(this IQueryable<TEntity> source, Expression<Func<TEntity, bool>> predicate, IPagedRequest request, Expression<Func<TEntity, TResult>> selector)
@@ -96,27 +96,20 @@ namespace DestinyCore.Extensions
         }
 
 
-
-
-
-
         /// <summary>
         /// 从集合中查询指定数据筛选的分页信息
         /// </summary>
         /// <typeparam name="TEntity">动态实体类型</typeparam>
-        /// <typeparam name="TResult">要返回动态实体类型</typeparam>
         /// <param name="source">数据源</param>
-        /// <param name="predicate">查询条件表达式</param>
-        /// <param name="pageParameters">分页参数</param>
-        /// <param name="selector">数据筛选表达式</param>
+        /// <param name="request">分页参数</param>
         /// <returns></returns>
         public static async Task<IPagedResult<TEntity>> ToPageAsync<TEntity>(this IQueryable<TEntity> source, IPagedRequest request)
         {
             request.NotNull(nameof(request));
 
-            var result = await source.WhereAsync(request.PageIndex, request.PageSize, null, request.OrderConditions);
-            var list = await result.data.ToArrayAsync();
-            var total = result.totalNumber;
+            var (data, totalNumber) = await source.WhereAsync(request.PageIndex, request.PageSize, null, request.OrderConditions);
+            var list = await data.ToArrayAsync();
+            var total = totalNumber;
             return new PageResult<TEntity>(list, total);
         }
 
@@ -209,7 +202,6 @@ namespace DestinyCore.Extensions
         /// <typeparam name="TEntity"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="source"></param>
-        /// <param name="predicate"></param>
         /// <param name="rootwhere"></param>
         /// <param name="childswhere"></param>
         /// <param name="addchilds"></param>
@@ -242,12 +234,11 @@ namespace DestinyCore.Extensions
             string cannotGetText = "Cannot get";
 
             var enumerator = query.Provider.Execute<IEnumerable>(query.Expression).GetEnumerator();
-            var relationalCommandCache = enumerator.Private(relationalCommandCacheText) as RelationalCommandCache;
             var queryContext = enumerator.Private<RelationalQueryContext>(relationalQueryContextText) ?? throw new InvalidOperationException($"{cannotGetText} {relationalQueryContextText}");
             var parameterValues = queryContext.ParameterValues;
 
 
-            if (relationalCommandCache != null)
+            if (enumerator.Private(relationalCommandCacheText) is RelationalCommandCache relationalCommandCache)
             {
                 var command = relationalCommandCache.GetRelationalCommand(parameterValues);
                 var parameterNames = new HashSet<string>(command.Parameters.Select(p => p.InvariantName));

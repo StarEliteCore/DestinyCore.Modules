@@ -1,4 +1,5 @@
-﻿using DestinyCore.Exceptions;
+﻿using DestinyCore.Dependency;
+using DestinyCore.Exceptions;
 using DestinyCore.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,15 +27,26 @@ namespace DestinyCore.Extensions
             return factory.CreateLogger<T>();
         }
         /// <summary>
-        /// 
+        /// 获取日志记录器
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="provider"></param>
         /// <param name="type"></param>
         /// <returns></returns>
         public static ILogger GetLogger(this IServiceProvider provider, Type type)
         {
             ILoggerFactory factory = provider.GetService<ILoggerFactory>();
+            return factory.CreateLogger(type);
+        }
+
+        /// <summary>
+        /// 获取日志记录器
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static ILogger GetLogger(this ILazyServiceProvider provider, Type type)
+        {
+            ILoggerFactory factory = provider.LazyGetService<ILoggerFactory>();
             return factory.CreateLogger(type);
         }
 
@@ -178,8 +190,7 @@ namespace DestinyCore.Extensions
         /// <summary>
         /// 根据配置得到文件内容
         /// </summary>
-        /// <param name="services">服务接口</param>
-        /// <param name=""></param>
+        /// <param name="provider"></param>
         /// <param name="sectionKey">分区键</param>
         /// <param name="fileNotExistsMsg">文件不存提示信息</param>
         /// <returns>返回文件中的文件</returns>
@@ -197,7 +208,7 @@ namespace DestinyCore.Extensions
         /// <summary>
         /// 得到文件容器
         /// </summary>
-        /// <param name="services">服务接口</param>
+        /// <param name="provider">服务接口</param>
         /// <param name="fileName">文件名+后缀名</param>
         /// <param name="fileNotExistsMsg">文件不存提示信息</param>
         /// <returns>返回文件中的文件</returns>

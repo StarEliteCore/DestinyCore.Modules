@@ -29,6 +29,8 @@ namespace DestinyCore.Extensions
 
             _mapper.NotNull(nameof(_mapper));
         }
+
+        /// <summary>
         /// 将对象映射为指定类型
         /// </summary>
         /// <typeparam name="TTarget">要映射的目标类型</typeparam>

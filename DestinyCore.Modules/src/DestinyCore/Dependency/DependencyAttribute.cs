@@ -15,7 +15,7 @@ namespace DestinyCore.Dependency
         }
 
         /// <summary>
-        /// 获取 生命周期类型，代替 <see cref="ISingletonDependency"/>, <see cref="IScopeDependency"/>, <see
+        /// 获取 生命周期类型，代替 <see cref="ISingletonDependency"/>, <see cref="IScopedDependency"/>, <see
         /// cref="ITransientDependency"/> 三个接口的作用
         /// </summary>
         public ServiceLifetime Lifetime { get; }
