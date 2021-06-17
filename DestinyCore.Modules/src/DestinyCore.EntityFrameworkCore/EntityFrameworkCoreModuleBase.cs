@@ -24,8 +24,6 @@ namespace DestinyCore.EntityFrameworkCore
             this.AddRepository(context.Services);
         }
 
-
-
         /// <summary>
         /// 添加仓储
         /// </summary>
