@@ -33,6 +33,10 @@ namespace DestinyCore.Filter
         public int Total { get; set; }
 
         public IReadOnlyList<T> ItemList { get; set; }
+
+        /// <summary>
+        /// 这里不应该是个。
+        /// </summary>
         public AjaxResultType Type { get; set; }
     }
 }

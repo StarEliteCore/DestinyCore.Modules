@@ -36,6 +36,8 @@ namespace DestinyCore.Modules
 
         }
 
+        [Obsolete("请使用UseInitializeApplication方法")]
+
         public static IApplicationBuilder InitializeApplication(this IApplicationBuilder builder)
         {
             builder.ApplicationServices.GetRequiredService<ObjectAccessor<IApplicationBuilder>>().Value = builder;
@@ -44,5 +46,13 @@ namespace DestinyCore.Modules
             return builder;
         }
 
+
+        public static IApplicationBuilder UseInitializeApplication(this IApplicationBuilder builder)
+        {
+            builder.ApplicationServices.GetRequiredService<ObjectAccessor<IApplicationBuilder>>().Value = builder;
+            var runner = builder.ApplicationServices.GetRequiredService<IStartupModuleRunner>();
+            runner.Initialize(builder.ApplicationServices);
+            return builder;
+        }
     }
 }
