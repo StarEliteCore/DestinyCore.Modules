@@ -5,29 +5,33 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore", "src\DestinyCore\DestinyCore.csproj", "{9684B009-C382-4026-9824-A0CEB21140D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.EntityFrameworkCore", "src\DestinyCore.EntityFrameworkCore\DestinyCore.EntityFrameworkCore.csproj", "{EBD9B8FB-CD59-4F85-AA4A-FDD9873304FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.EntityFrameworkCore", "src\DestinyCore.EntityFrameworkCore\DestinyCore.EntityFrameworkCore.csproj", "{EBD9B8FB-CD59-4F85-AA4A-FDD9873304FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.CodeGenerator", "src\DestinyCore.CodeGenerator\DestinyCore.CodeGenerator.csproj", "{61BC6622-E4D6-438A-9000-9DF2504ED9BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.CodeGenerator", "src\DestinyCore.CodeGenerator\DestinyCore.CodeGenerator.csproj", "{61BC6622-E4D6-438A-9000-9DF2504ED9BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.AspNetCore", "src\DestinyCore.AspNetCore\DestinyCore.AspNetCore.csproj", "{AD18D9D0-F4C6-49FF-AED3-068B70E14007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.AspNetCore", "src\DestinyCore.AspNetCore\DestinyCore.AspNetCore.csproj", "{AD18D9D0-F4C6-49FF-AED3-068B70E14007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Caching", "src\DestinyCore.Caching\DestinyCore.Caching.csproj", "{BE776E41-133F-49B4-AC63-35E74308F72F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Caching", "src\DestinyCore.Caching\DestinyCore.Caching.csproj", "{BE776E41-133F-49B4-AC63-35E74308F72F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Aop", "src\DestinyCore.Aop\DestinyCore.Aop.csproj", "{1094F31A-577B-48D4-A765-BD3F81A4523F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Aop", "src\DestinyCore.Aop\DestinyCore.Aop.csproj", "{1094F31A-577B-48D4-A765-BD3F81A4523F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.AutoMapper", "src\DestinyCore.AutoMapper\DestinyCore.AutoMapper.csproj", "{C6DA7C7C-41AB-40EB-8842-58A645BA4F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.AutoMapper", "src\DestinyCore.AutoMapper\DestinyCore.AutoMapper.csproj", "{C6DA7C7C-41AB-40EB-8842-58A645BA4F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.MongoDB", "src\DestinyCore.MongoDB\DestinyCore.MongoDB.csproj", "{92FDDE06-EE22-403C-A216-177E5C62D1A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.MongoDB", "src\DestinyCore.MongoDB\DestinyCore.MongoDB.csproj", "{92FDDE06-EE22-403C-A216-177E5C62D1A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Swagger", "src\DestinyCore.Swagger\DestinyCore.Swagger.csproj", "{CE368868-CE53-445B-B7E9-95F75E16375E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Swagger", "src\DestinyCore.Swagger\DestinyCore.Swagger.csproj", "{CE368868-CE53-445B-B7E9-95F75E16375E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.MiniProfiler", "src\DestinyCore.MiniProfiler\DestinyCore.MiniProfiler.csproj", "{8C717E81-DDC6-48D0-B3DD-190C751F9818}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.MiniProfiler", "src\DestinyCore.MiniProfiler\DestinyCore.MiniProfiler.csproj", "{8C717E81-DDC6-48D0-B3DD-190C751F9818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.TestBase", "src\DestinyCore.TestBase\DestinyCore.TestBase.csproj", "{923E7365-2946-4C9C-AB46-D6735A164542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.TestBase", "src\DestinyCore.TestBase\DestinyCore.TestBase.csproj", "{923E7365-2946-4C9C-AB46-D6735A164542}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.FluentValidation", "src\DestinyCore.FluentValidation\DestinyCore.FluentValidation.csproj", "{741C1B1A-DFE6-437A-B380-5ADC2CBC6E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.FluentValidation", "src\DestinyCore.FluentValidation\DestinyCore.FluentValidation.csproj", "{741C1B1A-DFE6-437A-B380-5ADC2CBC6E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Caching.CSRedis", "src\DestinyCore.Caching.CSRedis\DestinyCore.Caching.CSRedis.csproj", "{B246E96E-A0F5-4B75-9E37-CC3AB7023789}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Caching.CSRedis", "src\DestinyCore.Caching.CSRedis\DestinyCore.Caching.CSRedis.csproj", "{B246E96E-A0F5-4B75-9E37-CC3AB7023789}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Redis", "src\DestinyCore.Redis\DestinyCore.Redis.csproj", "{0DC12EFC-DA58-4E83-B030-F711D95DABA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Test", "test\DestinyCore.Test\DestinyCore.Test.csproj", "{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,14 @@ Global
 		{B246E96E-A0F5-4B75-9E37-CC3AB7023789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B246E96E-A0F5-4B75-9E37-CC3AB7023789}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B246E96E-A0F5-4B75-9E37-CC3AB7023789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC12EFC-DA58-4E83-B030-F711D95DABA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC12EFC-DA58-4E83-B030-F711D95DABA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC12EFC-DA58-4E83-B030-F711D95DABA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC12EFC-DA58-4E83-B030-F711D95DABA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
