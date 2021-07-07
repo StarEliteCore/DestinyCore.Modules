@@ -55,5 +55,11 @@ namespace DestinyCore.MongoDB.Repositorys
         /// <param name="delete"></param>
         /// <returns></returns>
         Task<OperationResponse> DeleteAsync(FilterDefinition<TEntity> delete);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<OperationResponse> ReplaceAsync(TEntity entity);
     }
 }
