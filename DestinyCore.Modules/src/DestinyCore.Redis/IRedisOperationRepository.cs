@@ -162,5 +162,37 @@ namespace DestinyCore.Redis
         /// <param name="redisKey"></param>
         /// <returns></returns>
         Task ListClearAsync(string redisKey);
+
+        /// <summary>
+        /// 释放锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<bool> UnLockAsync(string key);
+
+        /// <summary>
+        /// 获取锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="timeSpan"></param>
+        /// <returns></returns>
+        Task<bool> LockAsync(string key, TimeSpan expiretime);
+
+        /// <summary>
+        /// 释放锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool UnLock(string key);
+
+        /// <summary>
+        /// 获取锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiretime"></param>
+        /// <returns></returns>
+        bool Lock(string key, TimeSpan expiretime);
+
+
     }
 }

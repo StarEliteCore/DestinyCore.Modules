@@ -31,6 +31,53 @@ namespace DestinyCore.Test
             var newkey= await _redisOperationRepository.Get(key);
             Assert.Equal(str, newkey);
         }
+        /// <summary>
+        /// 分布式锁单元测试
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task DistributedLocker_Test()
+        {
+            var key = "Order002";
+            var lockerkey = await _redisOperationRepository.LockAsync(key, TimeSpan.FromSeconds(180));
+            try
+            {
+                if (lockerkey)
+                {
+                    Console.WriteLine("获取到了锁");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                await _redisOperationRepository.UnLockAsync(key);
+            }
+        }
+
+        [Fact]
+        public async Task ListLeftPushAsync_Test()
+        {
+            var str = "插入头部1";
+            var key = "testq";
+            await _redisOperationRepository.ListLeftPushAsync(key, "插入头部3"); //插入头部
+            await _redisOperationRepository.ListRightPushAsync(key, "插入屁股3"); //插入屁股
+            var newkey = await _redisOperationRepository.ListRangeAsync(key);
+            
+        }
+
+        [Fact]
+        public async Task ListRightPopAsync_Test()
+        {
+            var key = "testq";
+            //await _redisOperationRepository.ListLeftPopAsync(key);//删除头部
+            await _redisOperationRepository.ListRightPopAsync(key); //删除屁股
+            var newkey = await _redisOperationRepository.ListRangeAsync(key);
+
+        }
+
     }
 
     [DependsOn(typeof(DependencyAppModule))]
@@ -41,6 +88,7 @@ namespace DestinyCore.Test
             service.AddRedis("192.168.0.166:6379,password = redis123,defaultDatabase=6,prefix = test_");
         }
     }
+
 
     //public class TestRedis : RedisEntity,
 }

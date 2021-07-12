@@ -179,7 +179,7 @@ namespace DestinyCore.Redis
         /// <returns></returns>
         public async Task<long> ListRightPushAsync(string redisKey, string redisValue)
         {
-            return await _database.ListLeftPushAsync(redisKey, redisValue);
+            return await _database.ListRightPushAsync(redisKey, redisValue);
         }
 
         /// <summary>
@@ -238,5 +238,53 @@ namespace DestinyCore.Redis
                 await _database.StringSetAsync(key, value, cacheTime);
             }
         }
+
+        #region 分布式锁
+        /// <summary>
+        /// 分布式锁 Token。
+        /// </summary>
+        private static readonly RedisValue LockToken = Environment.MachineName;
+
+        /// <summary>
+        /// 获取锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiretime"></param>
+        /// <returns></returns>
+        public bool Lock(string key, TimeSpan expiretime)
+        {
+            return _database.LockTake(key, LockToken, expiretime);
+        }
+        /// <summary>
+        /// 释放锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiretime"></param>
+        /// <returns></returns>
+        public bool UnLock(string key)
+        {
+            return _database.LockRelease(key, LockToken);
+        }
+        /// <summary>
+        /// 获取锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiretime"></param>
+        /// <returns></returns>
+        public async Task<bool> LockAsync(string key, TimeSpan expiretime)
+        {
+            return await _database.LockTakeAsync(key, LockToken, expiretime);
+        }
+        /// <summary>
+        /// 释放锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiretime"></param>
+        /// <returns></returns>
+        public async Task<bool> UnLockAsync(string key)
+        {
+            return await _database.LockReleaseAsync(key, LockToken);
+        }
+        #endregion
     }
 }
