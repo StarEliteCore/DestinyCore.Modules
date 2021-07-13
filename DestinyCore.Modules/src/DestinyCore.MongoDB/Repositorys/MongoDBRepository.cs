@@ -26,7 +26,6 @@ namespace DestinyCore.MongoDB.Repositorys
         public MongoDBRepository(IServiceProvider serviceProvider, MongoDbContextBase mongoDbContext)
         {
             _mongoDbContext = mongoDbContext;
-
             Collection = _mongoDbContext.Collection<TEntity>();
             _principal = serviceProvider.GetService<IPrincipal>();
 
@@ -108,6 +107,20 @@ namespace DestinyCore.MongoDB.Repositorys
 
             var result = await Collection.UpdateManyAsync(filters, update);
             return result.ModifiedCount > 0 ? OperationResponse.Ok("更新成功") : OperationResponse.Error("更新失败");
+        }
+
+        public async Task<OperationResponse> ReplaceAsync(TEntity entity)
+        {
+            System.Linq.Expressions.Expression<Func<TEntity, bool>> expression = g => true;
+            //  expression = expression.And(g => g.Id.Equals(key));
+            //  var userMongo = (await Collection.FindAsync<TEntity>(expression)).FirstOrDefault();
+            var models = new List<WriteModel<TEntity>>();
+            var upsert = new ReplaceOneModel<TEntity>(
+                                   filter: Builders<TEntity>.Filter.Eq(p => p.Id, entity.Id),
+                                   replacement: entity){ IsUpsert = true };
+            models.Add(upsert);
+            await Collection.BulkWriteAsync(models);
+            return OperationResponse.Ok("替换成功");
         }
 
         public async Task<OperationResponse> DeleteAsync(Tkey key)
