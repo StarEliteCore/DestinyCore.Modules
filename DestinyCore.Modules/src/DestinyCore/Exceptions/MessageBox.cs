@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Exceptions
 {
-   public class MessageBox
+    /// <summary>
+    /// 程序异常
+    /// </summary>
+    public class MessageBox
     {
 
 

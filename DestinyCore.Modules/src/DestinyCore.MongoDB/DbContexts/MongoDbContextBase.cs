@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DestinyCore.MongoDB.DbContexts
 {
-    public abstract class MongoDbContextBase : IDisposable
+    public abstract class MongoDbContextBase :IDisposable
     {
         private readonly MongoDbContextOptions _options;
         public MongoDbContextBase([NotNull] MongoDbContextOptions options)
@@ -19,6 +19,8 @@ namespace DestinyCore.MongoDB.DbContexts
         private string ConnectionString => _options.ConnectionString;
 
         public IMongoDatabase Database => GetDbContext();
+
+        public IMongoClient MongoClient => Database.Client;
 
         public IMongoCollection<TEntity> Collection<TEntity>()
         {
@@ -43,7 +45,7 @@ namespace DestinyCore.MongoDB.DbContexts
         }
 
 
-        private IMongoDatabase GetDbContext()
+        public IMongoDatabase GetDbContext()
         {
             var mongoUrl = new MongoUrl(ConnectionString);
             var databaseName = mongoUrl.DatabaseName;
@@ -58,7 +60,9 @@ namespace DestinyCore.MongoDB.DbContexts
 
         public void Dispose()
         {
-
+        
         }
+
+     
     }
 }
