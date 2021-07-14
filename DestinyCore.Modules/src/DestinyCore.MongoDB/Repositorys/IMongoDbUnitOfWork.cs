@@ -28,16 +28,32 @@ namespace DestinyCore.MongoDB.Repositorys
         bool HasCommit();
 
 
+        /// <summary>
+        /// 开启事务
+        /// </summary>
         void StartSession();
 
 
+        /// <summary>
+        /// 提交事务
+        /// </summary>
         void CommitTransaction();
   
+        /// <summary>
+        /// 回滚事务
+        /// </summary>
         void AbortTransaction();
 
+        /// <summary>
+        /// 异步开启事务
+        /// </summary>
+        /// <returns></returns>
         ValueTask StartSessionAsync();
 
-
+        /// <summary>
+        /// 异步提交事务
+        /// </summary>
+        /// <returns></returns>
         ValueTask CommitTransactionAsync();
 
         ValueTask AbortTransactionAsync();
