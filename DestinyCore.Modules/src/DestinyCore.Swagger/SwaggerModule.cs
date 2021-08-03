@@ -18,6 +18,17 @@ namespace DestinyCore.Swagger
 
 
 
+        protected IConfiguration GetConfiguration(IConfiguration configuration)
+        {
+            var title = configuration["Destiny:Swagger:Title"];
+            var version = configuration["Destiny:Swagger:Version"];
+            var url = configuration["Destiny:Swagger:Url"];
+            var html = configuration["Destiny:Swagger:Html"]; ;
+
+            return configuration;
+        }
+
+
         private string _url = string.Empty;
         private string _title = string.Empty;
 

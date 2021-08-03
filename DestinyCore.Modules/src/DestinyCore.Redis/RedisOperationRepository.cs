@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Redis
 {
-    public class RedisOperationRepository : IRedisOperationRepository
+    public class RedisOperationRepository :IRedisOperationRepository
     {
         private readonly ILogger<RedisOperationRepository> _logger;
         private readonly ConnectionMultiplexer _redis;
@@ -284,6 +284,18 @@ namespace DestinyCore.Redis
         public async Task<bool> UnLockAsync(string key)
         {
             return await _database.LockReleaseAsync(key, LockToken);
+        }
+
+
+       
+        /// <summary>
+        /// 释放
+        /// </summary>
+        public void Dispose()
+        {
+
+            _redis?.Dispose();
+            GC.SuppressFinalize(this);
         }
         #endregion
     }

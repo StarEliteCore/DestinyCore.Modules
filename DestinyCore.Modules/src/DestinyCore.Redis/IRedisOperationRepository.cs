@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Redis
 {
+    //todo 名字不应该这样叫吧？ 直接叫RedisCache
     /// <summary>
     /// Redis接口
     /// </summary>
-    public interface IRedisOperationRepository
+    public interface IRedisOperationRepository : IDisposable
     {
+        ///异步加Async
+
         /// <summary>
         /// 获取Redis缓存值
         /// </summary>

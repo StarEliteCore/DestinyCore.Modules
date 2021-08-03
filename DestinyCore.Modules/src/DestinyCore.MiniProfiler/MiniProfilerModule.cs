@@ -6,6 +6,7 @@ using System;
 
 namespace DestinyCore.MiniProfiler
 {
+    [Obsolete("下个版本将删除")]
     public class MiniProfilerModule : AppModule
     {
         private const string _name = "Destiny:IsOpenMiniProfiler";
