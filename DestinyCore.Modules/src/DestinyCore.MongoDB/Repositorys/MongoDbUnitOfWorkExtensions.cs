@@ -20,7 +20,7 @@ namespace DestinyCore.MongoDB
         /// <param name="unitOfWork"></param>
         /// <param name="action">要执行的操作</param>
         /// <returns></returns>
-        public static void UseTran(this IMongoDbUnitOfWork unitOfWork, Action action)
+        public static void UseTransaction(this IMongoDbUnitOfWork unitOfWork, Action action)
         {
             action.NotNull(nameof(action));
             if (unitOfWork.HasCommit())
@@ -55,7 +55,7 @@ namespace DestinyCore.MongoDB
         /// <param name="unitOfWork"></param>
         /// <param name="func"></param>
         /// <returns>返回操作结果</returns>
-        public static async ValueTask<OperationResponse> UseTranAsync(this IMongoDbUnitOfWork unitOfWork, Func<Task<OperationResponse>> func)
+        public static async ValueTask<OperationResponse> UseTransactionAsync(this IMongoDbUnitOfWork unitOfWork, Func<Task<OperationResponse>> func)
         {
             func.NotNull(nameof(func));
             OperationResponse result = new OperationResponse();
@@ -109,7 +109,7 @@ namespace DestinyCore.MongoDB
         /// <param name="unitOfWork"></param>
         /// <param name="func"></param>
         /// <returns>返回操作结果</returns>
-        public static OperationResponse UseTran(this IMongoDbUnitOfWork unitOfWork, Func<OperationResponse> func)
+        public static OperationResponse UseTransaction(this IMongoDbUnitOfWork unitOfWork, Func<OperationResponse> func)
         {
             func.NotNull(nameof(func));
             OperationResponse result = new OperationResponse();
