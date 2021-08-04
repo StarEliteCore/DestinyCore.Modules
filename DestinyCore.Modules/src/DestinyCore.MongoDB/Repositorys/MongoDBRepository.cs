@@ -90,7 +90,7 @@ namespace DestinyCore.MongoDB.Repositorys
             AddGlobalFilters(filters);
             return Builders<TEntity>.Filter.And(filters);
         }
-        private void AddGlobalFilters(List<FilterDefinition<TEntity>> filters)
+        protected virtual void AddGlobalFilters(List<FilterDefinition<TEntity>> filters)
         {
             if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
             {
