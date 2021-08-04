@@ -1,4 +1,5 @@
 ﻿using DestinyCore.Filter;
+using System;
 using System.ComponentModel;
 
 namespace DestinyCore.Enums
@@ -10,6 +11,9 @@ namespace DestinyCore.Enums
         [Description("操作成功")]
         Success = 0,
 
+        /// <summary>
+        /// 已知错误
+        /// </summary>
         [Description("操作引发错误")]
         Error = 5,
 
@@ -53,10 +57,11 @@ namespace DestinyCore.Enums
         Success = 200,
     }
 
-    [Description("结果类型")]
     /// <summary>
     /// 结果类型全局通用
     /// </summary>
+    [Description("结果类型")]
+
     public enum ResultType
     {
         /// <summary>
@@ -97,6 +102,7 @@ namespace DestinyCore.Enums
         NoFound = 404
 
     }
+
     public enum AjaxResultType
     {
 
