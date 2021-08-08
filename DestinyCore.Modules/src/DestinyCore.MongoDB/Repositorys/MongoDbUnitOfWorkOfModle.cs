@@ -1,6 +1,7 @@
 ﻿using DestinyCore.Extensions;
 using DestinyCore.MongoDB.DbContexts;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DestinyCore.MongoDB.Repositorys
 
             context.NotNull(nameof(TMongoDbContext));
             _context = context;
-            _logger = loggerFactory.CreateLogger<MongoDbUnitOfWork<TMongoDbContext>>();
+            _logger = loggerFactory.CreateLogger<MongoDbUnitOfWork<TMongoDbContext>>() ?? NullLogger<MongoDbUnitOfWork<TMongoDbContext>>.Instance;
         }
 
         private IClientSessionHandle ClientSession { get; set; }

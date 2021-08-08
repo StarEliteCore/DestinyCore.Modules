@@ -28,10 +28,11 @@ namespace DestinyCore.MongoDB
                 return;
             }
 
-            unitOfWork.StartSession();
+            
             try
             {
-                action?.Invoke();
+                unitOfWork.StartSession();
+                action.Invoke();
                 unitOfWork.CommitTransaction();
             }
             catch (ResultException ex)
@@ -68,31 +69,28 @@ namespace DestinyCore.MongoDB
 
             try
             {
-                await unitOfWork.StartSessionAsync();
+                await unitOfWork.StartSessionAsync().ConfigureAwait(false);
                 result = await func.Invoke();
                 if (!result.Success)
                 {
-                    await unitOfWork.AbortTransactionAsync();
+                    await unitOfWork.AbortTransactionAsync().ConfigureAwait(false);
                     return result;
                 }
-                await unitOfWork.CommitTransactionAsync();
+                await unitOfWork.CommitTransactionAsync().ConfigureAwait(false);
             }
             catch (ResultException ex)
             {
-                await unitOfWork.AbortTransactionAsync();
+                await unitOfWork.AbortTransactionAsync().ConfigureAwait(false);
                 ResultException.Throw(ex.Message, ex);
+                unitOfWork?.LogError(ex);
                 return result;
             }
             catch (Exception ex)
             {
 
-                await unitOfWork.AbortTransactionAsync();
-                unitOfWork.LogError(ex);
-                return new OperationResponse()
-                {
-                    Type = OperationResponseType.Error,
-                    Message = ex.Message,
-                };
+                await unitOfWork.AbortTransactionAsync().ConfigureAwait(false);
+                unitOfWork?.LogError(ex);
+                return OperationResponse.Exp(ex.Message);
             }
             return result;
         }
@@ -100,7 +98,7 @@ namespace DestinyCore.MongoDB
         private static void LogError(this IMongoDbUnitOfWork unitOfWork, Exception exception)
         {
            
-            unitOfWork.GetLogger()?.LogError(exception, exception.Message);
+            unitOfWork?.GetLogger()?.LogError(exception, exception.Message);
         }
 
         /// <summary>
@@ -136,12 +134,8 @@ namespace DestinyCore.MongoDB
             {
 
                 unitOfWork.AbortTransaction();
-                unitOfWork.LogError(ex);
-                return new OperationResponse()
-                {
-                    Type = OperationResponseType.Exp,
-                    Message = ex.Message,
-                };
+                unitOfWork?.LogError(ex);
+                return OperationResponse.Exp(ex.Message);
             }
           
 
