@@ -3,6 +3,7 @@ using DestinyCore.Exceptions;
 using DestinyCore.Extensions;
 using DestinyCore.MongoDB.Repositorys;
 using DestinyCore.Ui;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace DestinyCore.MongoDB
             try
             {
                 await unitOfWork.StartSessionAsync().ConfigureAwait(false);
-                result = await func.Invoke();
+                result = await func.Invoke().ConfigureAwait(false);
                 if (!result.Success)
                 {
                     await unitOfWork.AbortTransactionAsync().ConfigureAwait(false);
@@ -100,6 +101,8 @@ namespace DestinyCore.MongoDB
            
             unitOfWork?.GetLogger()?.LogError(exception, exception.Message);
         }
+
+  
 
         /// <summary>
         /// 开启事务 如果成功提交事务，失败回滚事务

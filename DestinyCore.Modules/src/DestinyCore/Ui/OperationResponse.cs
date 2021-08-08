@@ -1,5 +1,6 @@
 ﻿using DestinyCore.Enums;
 using DestinyCore.Filter;
+using System;
 
 namespace DestinyCore.Ui
 {
@@ -92,6 +93,17 @@ namespace DestinyCore.Ui
         {
 
             return new OperationResponse(message, data, OperationResponseType.Error);
+        }
+
+        public static OperationResponse Exp(string message)
+        {
+
+            return new OperationResponse() { Message = message, Type = OperationResponseType.Exp };
+        }
+        public static OperationResponse Exp(Exception ex)
+        {
+
+            return new OperationResponse() { Message=ex.Message,Type=OperationResponseType.Exp};
         }
 
     }
