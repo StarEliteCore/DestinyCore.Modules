@@ -74,7 +74,7 @@ namespace DestinyCore.MongoDB.Repositorys
 
             if (Database?.Client != null && ClientSession == null)
             {
-                ClientSession =await Database.Client.StartSessionAsync();
+                ClientSession =await Database.Client.StartSessionAsync().ConfigureAwait(false);
                 _logger.LogInformation("开启异步事务成功....");
             }
 
@@ -91,7 +91,7 @@ namespace DestinyCore.MongoDB.Repositorys
                 _logger.LogInformation("异步事务已提交或释放没有产生任何效果....");
                 return;
             }
-            await ClientSession.CommitTransactionAsync();
+            await ClientSession.CommitTransactionAsync().ConfigureAwait(false);
             _logger.LogInformation("成功提交异步事务....");
             HasCommitted = true;
         }
@@ -101,7 +101,7 @@ namespace DestinyCore.MongoDB.Repositorys
             _logger.LogInformation("异步事务回滚中....");
             if (ClientSession != null)
             {
-               await ClientSession.AbortTransactionAsync();
+               await ClientSession.AbortTransactionAsync().ConfigureAwait(false);
                 _logger.LogInformation("异步事务回滚成功....");
             }
             _logger.LogInformation("异步事务结束回滚....");
@@ -133,6 +133,7 @@ namespace DestinyCore.MongoDB.Repositorys
             this._context?.Dispose();
             ClientSession?.Dispose();
             _disposed = true;
+            GC.SuppressFinalize(this);
         }
 
         private bool _disposed;
