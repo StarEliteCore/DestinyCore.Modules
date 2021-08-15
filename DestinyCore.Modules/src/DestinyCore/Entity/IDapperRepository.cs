@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DestinyCore.EntityFrameworkCore
+namespace DestinyCore
 {
-    public interface IDapperRepository
+    public interface IDapperRepository: IDisposable
     {
         IDbConnection DbConnection { get; }
 
