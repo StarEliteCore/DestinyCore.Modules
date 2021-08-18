@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DestinyCore.Resource {
+namespace DestinyCore
+{
     using System;
     
     
@@ -57,6 +58,15 @@ namespace DestinyCore.Resource {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Test_Value 的本地化字符串。
+        /// </summary>
+        internal static string 测试使用 {
+            get {
+                return ResourceManager.GetString("测试使用", resourceCulture);
             }
         }
     }

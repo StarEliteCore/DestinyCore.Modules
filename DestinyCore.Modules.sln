@@ -33,8 +33,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Redis", "src\De
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DestinyCore.Test", "test\DestinyCore.Test\DestinyCore.Test.csproj", "{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyCore.Resource", "src\DestinyCore.Resource\DestinyCore.Resource.csproj", "{85E34407-481D-41EE-AC1A-8E4A13B6608F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,10 +99,6 @@ Global
 		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A5C3E8-6F78-449A-ABBB-347D2615FE5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85E34407-481D-41EE-AC1A-8E4A13B6608F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85E34407-481D-41EE-AC1A-8E4A13B6608F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85E34407-481D-41EE-AC1A-8E4A13B6608F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85E34407-481D-41EE-AC1A-8E4A13B6608F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
