@@ -2,7 +2,7 @@
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class DateExtensions
     {
         /// <summary>
         /// returns the number of milliseconds since Jan 1, 1970 (useful for converting C# dates to JS dates)

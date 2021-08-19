@@ -1,5 +1,6 @@
 ﻿using DestinyCore.Dependency;
 using DestinyCore.Exceptions;
+using DestinyCore.Helpers;
 using DestinyCore.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class ServiceProviderExtensions
     {
 
         /// <summary>
@@ -231,7 +232,7 @@ namespace DestinyCore.Extensions
                 }
 
             }
-            var text = ReadAllText(fileInfo);
+            var text = FileInfoHelper.ReadAllText(fileInfo);
             if (text.IsNullOrEmpty())
             {
                 throw new AppException("文件内容不存在");

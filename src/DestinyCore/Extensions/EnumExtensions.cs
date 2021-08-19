@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class EnumExtensions
     {
         /// <summary>
         /// 转成显示名字

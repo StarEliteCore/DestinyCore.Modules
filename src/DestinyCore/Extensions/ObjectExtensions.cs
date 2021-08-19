@@ -7,7 +7,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// 对象扩展方法
     /// </summary>
-    public static partial class Extensions
+    public static partial class ObjectExtensions
     {
         /// <summary>
         /// 把对象类型转换为指定类型

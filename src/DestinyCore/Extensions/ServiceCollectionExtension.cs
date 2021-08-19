@@ -1,5 +1,6 @@
 ﻿using DestinyCore.Dependency;
 using DestinyCore.Exceptions;
+using DestinyCore.Helpers;
 using DestinyCore.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,7 @@ using System.Text;
 namespace DestinyCore.Extensions
 {
 
-    public static partial class Extensions
+    public static partial class ServiceCollectionExtension
     {
 
         /// <summary>
@@ -194,7 +195,7 @@ where TImplementation : class, TServiceType
                 }
 
             }
-            var text = ReadAllText(fileInfo);
+            var text = FileInfoHelper.ReadAllText(fileInfo);
             if (text.IsNullOrEmpty())
             {
                 throw new AppException("文件内容不存在");
@@ -220,19 +221,6 @@ where TImplementation : class, TServiceType
 
         }
 
-        /// <summary>
-        /// 读取全部文本
-        /// </summary>
-        /// <param name="fileInfo">文件信息接口</param>
-        /// <returns></returns>
-        private static string ReadAllText(IFileInfo fileInfo)
-        {
-            byte[] buffer;
-            using var stream = fileInfo.CreateReadStream();
-            buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return Encoding.Default.GetString(buffer).Trim();
-        }
 
         /// <summary>
         /// 添加文件提供器

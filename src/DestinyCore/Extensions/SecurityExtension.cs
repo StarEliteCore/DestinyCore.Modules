@@ -7,7 +7,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// 加密解密扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class SecurityExtension
     {
 
         #region 计算输入数据的MD5哈希值

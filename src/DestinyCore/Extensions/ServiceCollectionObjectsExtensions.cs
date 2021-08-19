@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class ServiceCollectionObjectsExtensions
     {
         public static ObjectAccessor<T> TryAddObjectAccessor<T>(this IServiceCollection services)
         {

@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class ControllerExtensions
     {
         public static bool IsController(this Type type)
         {

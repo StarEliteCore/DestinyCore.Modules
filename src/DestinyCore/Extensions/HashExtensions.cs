@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class HashExtensions
     {
         public static string Sha256(this string input)
         {

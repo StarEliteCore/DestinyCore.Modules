@@ -10,7 +10,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// 表达式目录树扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class ExpressionExtensions
     {
         /// <summary>
         /// Parser语法分析器

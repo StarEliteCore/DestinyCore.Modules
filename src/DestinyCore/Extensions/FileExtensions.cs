@@ -2,7 +2,7 @@
 
 namespace DestinyCore.Extensions
 {
-    public static class FileExtensions
+    public  static partial class FileExtensions
     {
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class BooleanWitnBoolExtensions
     {
 
         /// <summary>

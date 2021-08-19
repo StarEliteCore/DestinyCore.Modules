@@ -9,7 +9,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// 字符串扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class StringExtensions
     {
         /// <summary>
         /// 以指定字符串作为分隔符将指定字符串分隔成数组

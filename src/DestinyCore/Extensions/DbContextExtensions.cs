@@ -8,7 +8,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// 上下文扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class DbContextExtensions
     {
 
         /// <summary>

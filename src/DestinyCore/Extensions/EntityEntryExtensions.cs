@@ -7,7 +7,7 @@ using System.Security.Principal;
 
 namespace DestinyCore.Extensions
 {
-    public static class EntityEntryExtensions
+    public  static partial class EntityEntryExtensions
     {
         public static IEnumerable<EntityEntry> CheckInsert(this IEnumerable<EntityEntry> entitys, IPrincipal principal)
         {

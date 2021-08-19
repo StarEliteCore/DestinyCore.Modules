@@ -4,7 +4,7 @@ using System.Net;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class GetIPExtension
     {
 
         /// <summary>

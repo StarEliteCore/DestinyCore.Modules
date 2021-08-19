@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class ExpressionVisitorExtensions
     {
         public static Expression Visit<TExpression>(this Expression expression, Func<TExpression, Expression> visitor) where TExpression : Expression
         {

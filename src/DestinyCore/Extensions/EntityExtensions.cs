@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class EntityExtensions
     {
         public static Expression<Func<TEntity, bool>> ToEqualityExpression<TEntity, TKey>(this TKey id)
          where TEntity : IEntity<TKey>

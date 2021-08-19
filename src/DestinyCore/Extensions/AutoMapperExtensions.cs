@@ -9,7 +9,7 @@ namespace DestinyCore.Extensions
     /// <summary>
     /// AutoMapper扩展
     /// </summary>
-    public static partial class Extensions
+    public static partial class AutoMapperExtensions
     {
         private static IMapper _mapper = null;
 

@@ -10,10 +10,11 @@ using System.Reflection;
 
 namespace DestinyCore.AutoMapper
 {
+    /// <summary>
+    /// 自动映射模块
+    /// </summary>
     public class AutoMapperModule : AppModule
     {
-
-
 
         public override void ConfigureServices(ConfigureServicesContext context)
         {
@@ -27,7 +28,7 @@ namespace DestinyCore.AutoMapper
 
             }, assemblys, ServiceLifetime.Singleton);
             var mapper = context.Services.GetService<IMapper>();
-            DestinyCore.Extensions.Extensions.SetMapper(mapper);
+            DestinyCore.Extensions.AutoMapperExtensions.SetMapper(mapper);
         }
 
 

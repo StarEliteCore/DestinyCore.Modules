@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class CollectionExtensions
     {
 
         /// <summary>

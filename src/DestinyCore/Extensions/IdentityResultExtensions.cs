@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class IdentityResultExtensions
     {
         public static OperationResponse ToOperationResponse(this IdentityResult identityResult)
         {

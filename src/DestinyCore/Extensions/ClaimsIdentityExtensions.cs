@@ -5,7 +5,7 @@ using System.Security.Principal;
 
 namespace DestinyCore.Extensions
 {
-    public static partial class Extensions
+    public static partial class ClaimsIdentityExtensions
     {
         /// <summary>
         /// 得到用户ID

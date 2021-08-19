@@ -3,7 +3,7 @@
 namespace DestinyCore.Extensions
 {
 
-    public static partial class Extensions
+    public static partial class GuidExtensions
     {
         /// <summary>
         /// 转为有序的GUID
