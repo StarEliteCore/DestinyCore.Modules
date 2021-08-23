@@ -65,5 +65,48 @@ namespace DestinyCore.Helpers
             return filename;
         }
 
+        /// <summary>
+        /// 获取磁盘上的可用空闲空间
+        /// </summary>
+        /// <param name="directory">目录</param>
+        /// <returns></returns>
+        public static long GetAvailableFreeSpaceOnDisk(string directory)
+        {
+            try
+            {
+                var drive = new DriveInfo(directory);
+                if (drive.IsReady)
+                {
+                    return drive.AvailableFreeSpace;
+                }
+
+                return 0L;
+            }
+            catch (ArgumentException)
+            {
+                return 0L;
+            }
+        }
+
+        /// <summary>
+        /// 如果空间不够
+        /// </summary>
+        /// <param name="actualNeededSize">实际需要的大小</param>
+        /// <param name="directories">目录</param>
+        public static void ThrowIfNotEnoughSpace(long actualNeededSize, params string[] directories)
+        {
+            if (directories != null)
+            {
+                foreach (string directory in directories)
+                {
+                    var availableFreeSpace = GetAvailableFreeSpaceOnDisk(directory);
+                    if (availableFreeSpace > 0 && availableFreeSpace < actualNeededSize)
+                    {
+                        throw new IOException($"磁盘空间不足。处理步骤 `{directory}` 与 {availableFreeSpace} 字节");
+                    }
+                }
+            }
+        }
+
     }
 }
