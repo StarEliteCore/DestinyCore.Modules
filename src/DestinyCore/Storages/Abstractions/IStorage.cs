@@ -26,24 +26,24 @@ namespace DestinyCore.Storages
         Task WriteAsync(byte[] data, int offset, int count);
 
         /// <summary>
-        ///     Release all resources used by the storage.
+        /// 释放存储所使用的所有资源。
         /// </summary>
         void Clear();
 
         /// <summary>
-        ///     Flush written data to storage.
+        /// 将写入的数据刷新到存储器中。   
         /// </summary>
         void Flush();
 
         /// <summary>
-        ///     Closes the current stream and releases any resources (such as sockets and file handles)
-        ///     associated with the current stream. Instead of calling this method, ensure that
-        ///     the stream is properly disposed.
+        ///  关闭当前流并释放任何资源(如套接字和文件句柄)
+        ///  与当前流关联的。而不是调用这个方法，确保
+        ///  流被适当地配置。
         /// </summary>
         void Close();
 
         /// <summary>
-        ///     Gets the length in bytes of the storage.
+        /// 获取以字节为单位的存储长度。
         /// </summary>
         long GetLength();
     }

@@ -143,7 +143,7 @@ namespace DestinyCore.Storages
                 GC.SuppressFinalize(this);
 
             }
-            Clear();
+            Close();
             _disposed = true;
         }
     }
