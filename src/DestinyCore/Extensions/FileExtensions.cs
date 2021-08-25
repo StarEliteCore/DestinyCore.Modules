@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Extensions
 {
-    public  static partial class FileExtensions
+    public static partial class FileExtensions
     {
 
         /// <summary>
@@ -13,16 +13,9 @@ namespace DestinyCore.Extensions
         /// <param name="fileName">要判断文件名</param>
         /// <param name="fileExtension">要判断文件后缀名</param>
         /// <returns>如何是返回ture,则返回false</returns>
-        public static bool IsFile(this string fileName,string fileExtension)
+        public static bool IsFile(this string fileName, string fileExtension)
         {
-
-            if (Path.GetExtension(fileName).ToLower() == fileExtension) //txt文件
-            {
-
-                return true;
-            }
-            return false;
-
+            return Path.GetExtension(fileName).ToLower() == fileExtension ? true : false;
         }
 
         /// <summary>

@@ -10,7 +10,11 @@ namespace DestinyCore.Test
 {
     public class FileStorageTest
     {
-   
+        private FileStorage Storage =null;
+        public FileStorageTest()
+        {
+            Storage = new FileStorage("");
+        }
 
         protected const int DataLength = 2048;
         protected readonly byte[] DummyData = GenerateBytes(DataLength);
@@ -18,14 +22,14 @@ namespace DestinyCore.Test
         [Fact]
         public async Task WriteAsync_Test()
         {
-            using FileStorage storage = new FileStorage("");
+           
 
-            await storage.WriteAsync(DummyData, 0, DataLength);
-
-            var length = storage.GetLength();
+            await  Storage.WriteAsync(DummyData, 0, DataLength);
+            
+            var length= Storage.GetLength();
 
             Assert.Equal(DataLength, length);
-            storage.Clear();
+            Storage.Clear();
         }
 
         public static  byte[] GenerateBytes(int length)
