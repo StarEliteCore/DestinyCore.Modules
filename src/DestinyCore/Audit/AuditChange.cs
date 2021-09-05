@@ -50,7 +50,7 @@ namespace DestinyCore.Audit
         /// 结果类型
         /// </summary>
         [DisplayName("结果类型")]
-        public AjaxResultType ResultType { get; set; }
+        public ResultType ResultType { get; set; }
 
         public string UserId { get; set; }
 

@@ -40,23 +40,23 @@ namespace DestinyCore.AspNetCore
             catch (SecurityTokenExpiredException ex)
             {
                 _logger.LogError(new EventId(), ex, ex.Message);
-                await catchFunc(context, AjaxResultType.Unauthorized, ex, "未经授权", (int)HttpStatusCode.Unauthorized);
+                await catchFunc(context, ResultType.Unauthorized, ex, "未经授权", (int)HttpStatusCode.Unauthorized);
             }
             catch (AppException ex)
             {
                 _logger.LogError(new EventId(), ex, ex.Message); //应该自定义一个状态码。待重写
-                await catchFunc(context, AjaxResultType.Error, ex, string.Empty, (int)HttpStatusCode.OK);
+                await catchFunc(context, ResultType.Error, ex, string.Empty, (int)HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
                 _logger.LogError(new EventId(), ex, ex.Message);
 
-                await catchFunc(context, AjaxResultType.Error, ex, "服务器出现异常，请联系管理员!!", (int)HttpStatusCode.InternalServerError);
+                await catchFunc(context, ResultType.Error, ex, "服务器出现异常，请联系管理员!!", (int)HttpStatusCode.InternalServerError);
             }
         }
 
         //todo 实现方式不够好，待重写，2021-1-26 大黄瓜
-        private Func<HttpContext, AjaxResultType, Exception, string, int, Task> catchFunc = async (context, ajax, ex, msg, code) =>
+        private Func<HttpContext, ResultType, Exception, string, int, Task> catchFunc = async (context, ajax, ex, msg, code) =>
         {
        
             if (context.Request.IsAjaxRequest() || context.Request.IsJsonContextType())

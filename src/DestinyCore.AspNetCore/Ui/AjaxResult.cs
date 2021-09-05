@@ -8,33 +8,33 @@ namespace DestinyCore.AspNetCore
     /// <summary>
     /// Ajax操作结果
     /// </summary>
-    public class AjaxResult: AjaxResult<object>, IHasResultType<AjaxResultType>
+    public class AjaxResult: AjaxResult<object>, IHasResultType<ResultType>
     {
         public AjaxResult()
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success)
+        public AjaxResult(ResultType type = ResultType.Success)
             : base("", null, type)
         {
         }
 
-        public AjaxResult(string message, AjaxResultType type = AjaxResultType.Success, object data = null)
+        public AjaxResult(string message, ResultType type = ResultType.Success, object data = null)
             : base(message, data, type)
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success, object data = null)
+        public AjaxResult(ResultType type = ResultType.Success, object data = null)
             : base("", data, type)
         {
         }
 
-        public AjaxResult(string message, object data, AjaxResultType type):base(message, data, type)
+        public AjaxResult(string message, object data, ResultType type):base(message, data, type)
         {
           
         }
 
-        public AjaxResult(string message, bool success, object data, AjaxResultType type):base(message,success,data,type)
+        public AjaxResult(string message, bool success, object data, ResultType type):base(message,success,data,type)
         {
         
         }
@@ -55,9 +55,9 @@ namespace DestinyCore.AspNetCore
     /// <summary>
     /// Ajax操作结果
     /// </summary>
-    public class AjaxResult<TData> : ResultBase<TData>, IHasResultType<AjaxResultType>
+    public class AjaxResult<TData> : ResultBase<TData>, IHasResultType<ResultType>
     {
-        public AjaxResultType Type
+        public ResultType Type
         {
             get;
             set;
@@ -67,22 +67,22 @@ namespace DestinyCore.AspNetCore
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success)
+        public AjaxResult(ResultType type = ResultType.Success)
             : this("", default(TData), type)
         {
         }
 
-        public AjaxResult(string message, AjaxResultType type = AjaxResultType.Success, TData data = default(TData))
+        public AjaxResult(string message, ResultType type = ResultType.Success, TData data = default(TData))
             : this(message, data, type)
         {
         }
 
-        public AjaxResult(AjaxResultType type = AjaxResultType.Success, TData data = default(TData))
+        public AjaxResult(ResultType type = ResultType.Success, TData data = default(TData))
             : this("", data, type)
         {
         }
 
-        public AjaxResult(string message, TData data, AjaxResultType type)
+        public AjaxResult(string message, TData data, ResultType type)
         {
             Message = message;
             Data = data;
@@ -90,7 +90,7 @@ namespace DestinyCore.AspNetCore
             Success = Succeeded();
         }
 
-        public AjaxResult(string message, bool success, TData data, AjaxResultType type)
+        public AjaxResult(string message, bool success, TData data, ResultType type)
         {
             Message = message;
             Data = data;
@@ -100,12 +100,12 @@ namespace DestinyCore.AspNetCore
 
         public bool Succeeded()
         {
-            return Type == AjaxResultType.Success;
+            return Type == ResultType.Success;
         }
 
         public bool Error()
         {
-            return Type == AjaxResultType.Error;
+            return Type == ResultType.Error;
         }
 
         public virtual object ToObject()

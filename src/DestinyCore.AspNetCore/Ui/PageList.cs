@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DestinyCore.AspNetCore
 {
-    public class PageList<T> : ResultBase, IHasResultType<AjaxResultType>
+    public class PageList<T> : ResultBase, IHasResultType<ResultType>
     {
         public PageList() : this(new T[0], 0, "查询成功", true)
         {
@@ -21,7 +21,7 @@ namespace DestinyCore.AspNetCore
         public IEnumerable<T> ItemList { get; set; }
 
         public int Total { get; set; }
-        public AjaxResultType Type { get; set; }
+        public ResultType Type { get; set; }
     }
 
     public class PageListDto : PageList<dynamic>

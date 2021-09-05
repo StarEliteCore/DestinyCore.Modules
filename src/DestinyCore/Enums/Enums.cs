@@ -103,6 +103,8 @@ namespace DestinyCore.Enums
 
     }
 
+
+    [Obsolete("统一使用ResultType")]
     public enum AjaxResultType
     {
 

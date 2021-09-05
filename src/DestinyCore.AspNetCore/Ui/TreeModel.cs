@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DestinyCore.AspNetCore
 {
-    public class TreeModel<TData> : ResultBase, IListResult<TData>, IHasResultType<AjaxResultType>  //这里到时候要统一
+    public class TreeModel<TData> : ResultBase, IListResult<TData>, IHasResultType<ResultType>  //这里到时候要统一
     {
         public TreeModel() : this(new TData[0], "成功返回数据", true)
         {
@@ -18,7 +18,7 @@ namespace DestinyCore.AspNetCore
         }
 
         public IReadOnlyList<TData> ItemList { get; set; }
-        public AjaxResultType Type { get; set; }
+        public ResultType Type { get; set; }
     }
 
     public class TreeModel<TData, TSelectedType> : TreeModel<TData>  //这里到时候要统一

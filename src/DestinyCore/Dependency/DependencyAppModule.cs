@@ -90,7 +90,7 @@ namespace DestinyCore.Dependency
 
         public override void ApplicationInitialization(ApplicationContext context)
         {
-            var app = context.GetApplicationBuilder();
+            base.ApplicationInitialization(context);
         }
     }
 }

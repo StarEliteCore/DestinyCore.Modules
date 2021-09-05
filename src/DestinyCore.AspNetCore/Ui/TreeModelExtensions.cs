@@ -4,6 +4,12 @@ namespace DestinyCore.AspNetCore
 {
     public static class TreeModelExtensions
     {
+        /// <summary>
+        /// 转成树实体
+        /// </summary>
+        /// <typeparam name="TData">动态数据</typeparam>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public static TreeModel<TData> ToTreeModel<TData>(this ITreeResult<TData> result)
         {
             return new TreeModel<TData>(result.ItemList, result.Message, result.Success);

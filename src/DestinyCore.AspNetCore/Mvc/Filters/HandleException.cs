@@ -29,7 +29,7 @@ namespace DestinyCore.AspNetCore
                 if (context.Exception is ValidationException validationException)
                 {
                     var message = string.Join(",", validationException.Failures.Select(o => o.Message));
-                    context.Result = new JsonResult(new AjaxResult(validationException.Message.IsNullOrWhiteSpace() ? message : validationException.Message, AjaxResultType.Error));
+                    context.Result = new JsonResult(new AjaxResult(validationException.Message.IsNullOrWhiteSpace() ? message : validationException.Message, ResultType.Error));
                 }
             }
         }

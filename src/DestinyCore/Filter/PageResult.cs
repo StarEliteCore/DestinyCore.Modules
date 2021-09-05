@@ -9,7 +9,7 @@ namespace DestinyCore.Filter
     /// 分页数据
     /// </summary>
     /// <typeparam name="T">动态类型</typeparam>
-    public class PageResult<T> : ResultBase, IPagedResult<T>, IHasResultType<AjaxResultType>
+    public class PageResult<T> : ResultBase, IPagedResult<T>, IHasResultType<ResultType>
     {
 
         public PageResult() : this(new T[0], 0, "查询成功", true)
@@ -22,7 +22,7 @@ namespace DestinyCore.Filter
             Total = total;
             Success = success;
             this.Message = message;
-            Type = success ? AjaxResultType.Success : AjaxResultType.Error;
+            Type = success ? ResultType.Success : ResultType.Error;
         }
 
 
@@ -34,9 +34,6 @@ namespace DestinyCore.Filter
 
         public IReadOnlyList<T> ItemList { get; set; }
 
-        /// <summary>
-        /// 这里不应该是个。
-        /// </summary>
-        public AjaxResultType Type { get; set; }
+        public ResultType Type { get; set; }
     }
 }

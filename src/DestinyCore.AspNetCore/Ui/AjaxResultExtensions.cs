@@ -1,6 +1,7 @@
 ﻿using DestinyCore.Enums;
 using DestinyCore.Extensions;
 using DestinyCore.Ui;
+using System;
 using System.Threading.Tasks;
 
 namespace DestinyCore.AspNetCore
@@ -42,13 +43,12 @@ namespace DestinyCore.AspNetCore
         /// <param name="resultBase"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static (string message, AjaxResultType type) GetMessageWithAjaxType(this ResultBase resultBase, OperationResponseType type)
+        private static (string message, ResultType type) GetMessageWithAjaxType(this ResultBase resultBase, OperationResponseType type)
         {
             var message = resultBase.Message ?? type.ToDescription();
-            return (message, type.ToAjaxResultType());
+            return (message, type.ToResultType());
            
         }
-
         public static AjaxResultType ToAjaxResultType(this OperationResponseType responseType)
         {
             return responseType switch
@@ -58,6 +58,17 @@ namespace DestinyCore.AspNetCore
                 _ => AjaxResultType.Error,
             };
         }
+
+        public static ResultType ToResultType(this OperationResponseType responseType)
+        {
+            return responseType switch
+            {
+                OperationResponseType.Success => ResultType.Success,
+                OperationResponseType.NoChanged => ResultType.Info,
+                _ => ResultType.Error,
+            };
+        }
+
 
         public static AjaxResultType ToAjaxResultType(this AuthResultType type)
         {
@@ -71,13 +82,29 @@ namespace DestinyCore.AspNetCore
             };
         }
 
+        public static ResultType ToResultType(this AuthResultType type)
+        {
+            return type switch
+            {
+                AuthResultType.Success => ResultType.Success,
+                AuthResultType.Unauthorized => ResultType.Unauthorized,
+                AuthResultType.NoFound => ResultType.NoFound,
+                AuthResultType.Uncertified => ResultType.Uncertified,
+                _ => ResultType.Uncertified,
+            };
 
+        }
+
+        /// <summary>
+        /// 转成Ajax结果
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
         public static AjaxResult ToAjaxResult(this AuthorizationResult result)
         {
 
-
             var message = result.Message ?? result.Type.ToDescription();
-            AjaxResultType type = result.Type.ToAjaxResultType();
+            var type = result.Type.ToResultType();
             return new AjaxResult(message, type) { Success = result.Success };
         }
     }

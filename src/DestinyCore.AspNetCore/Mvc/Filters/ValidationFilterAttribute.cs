@@ -44,7 +44,7 @@ namespace DestinyCore.AspNetCore
             if (failures.Any())
             {
                 _logger.LogInformation($"验证失败:{method.Name} {failures.Select(o => o.ToString()).ToJoin()}");
-                context.Result = new JsonResult( new AjaxResult() { Type = Enums.AjaxResultType.Error, Message = failures.Select(o => o.ToString()).ToJoin() });
+                context.Result = new JsonResult( new AjaxResult() { Type = Enums.ResultType.Error, Message = failures.Select(o => o.ToString()).ToJoin() });
                 return;
             }
 
