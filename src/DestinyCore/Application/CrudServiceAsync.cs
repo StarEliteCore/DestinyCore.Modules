@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace DestinyCore.Application
 {
-    public class CrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto> : ICrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto>
+    public class CrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto> : CrudServiceFilter<TPrimaryKey, IEntity, IInputDto, IPagedListDto>, ICrudServiceAsync<TPrimaryKey, IEntity, IInputDto, IPagedListDto>
               where IEntity : class, IEntity<TPrimaryKey>
               where TPrimaryKey : IEquatable<TPrimaryKey>
               where IInputDto : class, IInputDto<TPrimaryKey>, new()
@@ -49,20 +49,19 @@ namespace DestinyCore.Application
         public virtual async Task<OperationResponse> CreateAsync(IInputDto inputDto)
         {
             inputDto.NotNull(nameof(inputDto));
-
-            return await this.Repository.InsertAsync(inputDto,this.InsertCheckAsync);
+            return await this.Repository.InsertAsync(inputDto, base.InsertCheck);
         }
 
 
-        /// <summary>
-        /// 插入检查
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        protected virtual Task InsertCheckAsync(IInputDto dto)
-        {
-            return Task.CompletedTask;
-        }
+        ///// <summary>
+        ///// 插入检查
+        ///// </summary>
+        ///// <param name="dto"></param>
+        ///// <returns></returns>
+        //protected virtual Task InsertCheckAsync(IInputDto dto)
+        //{
+        //    return Task.CompletedTask;
+        //}
 
 
 
@@ -87,21 +86,11 @@ namespace DestinyCore.Application
         public virtual Task<OperationResponse> UpdateAsync(IInputDto inputDto)
         {
             inputDto.NotNull(nameof(inputDto));
-            return this.Repository.UpdateAsync(inputDto,this.UpdateCheckAsync);
+            return this.Repository.UpdateAsync(inputDto,base.UpdateCheckFunc);
         }
 
 
-        /// <summary>
-        ///更新检查
-        /// </summary>
-        /// <param name="inputDto"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        protected virtual Task UpdateCheckAsync(IInputDto inputDto, IEntity entity)
-        {
-            return Task.CompletedTask;
-
-        }
+   
 
         /// <summary>
         /// 异步得到分页数据
